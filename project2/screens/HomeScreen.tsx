@@ -2,18 +2,10 @@ import React from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import ForYou from "../components/ForYou";
 
-
-interface HomeScreenProps extends StackScreenProps<RootStackParamList, 'Home'> {}
-
-const HomeScreen = ({ navigation }) => {
-  
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text> Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
       <ForYou></ForYou>
     </View>
   );

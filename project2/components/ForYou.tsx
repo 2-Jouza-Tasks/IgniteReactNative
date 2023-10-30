@@ -8,7 +8,7 @@ interface Props {
 const ForYou: FC<Props> = () => {
   return (
     <View>
-      <Text style={styles.container}>FFF </Text>;
+      <Text style={styles.container}>FFF</Text>
     </View>
   );
 };

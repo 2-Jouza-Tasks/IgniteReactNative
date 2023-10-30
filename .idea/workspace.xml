@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ab608784-b932-4f88-8b1c-529d38195206" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/project2/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2/components/Testing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/Testing.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/components/ForYou.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/ForYou.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/components/Home.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/components/Testing.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/screens/HomeScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
