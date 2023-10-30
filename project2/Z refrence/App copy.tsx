@@ -5,7 +5,7 @@ import HomeScreen from "../screens/HomeScreen";
 // ---------------
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Testing from "./Testing";
+import Testing from "../components/ZTemp";
 
 const Stack = createStackNavigator();
 

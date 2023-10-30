@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import QuestionView from "./QuestionView ";
+import QuestionView from "./QuestionView/QuestionView ";
 
 interface Props {
   // str: string;
 }
 
 const ForYou: FC<Props> = () => {
-
   const question = {
     type: "mcq",
     id: 5059,
@@ -19,7 +18,8 @@ const ForYou: FC<Props> = () => {
     options: [
       {
         id: "A",
-        answer: "They wanted to stop the spread of slavery, not end it entirely",
+        answer:
+          "They wanted to stop the spread of slavery, not end it entirely",
       },
       {
         id: "B",
@@ -36,13 +36,11 @@ const ForYou: FC<Props> = () => {
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
   };
-  
 
   return (
-    <View>
-      <Text style={styles.container}>FFF</Text>
+    <View style={styles.container}>
+      <Text>For You</Text>
       <QuestionView question={question} />
-
     </View>
   );
 };
@@ -51,8 +49,8 @@ export default ForYou;
 
 const styles = StyleSheet.create({
   container: {
-    fontWeight: "bold",
+    borderWidth: 3,
+    borderColor: "red",
+    borderRadius: 8,
   },
 });
-
-

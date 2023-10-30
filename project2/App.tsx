@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 // ---------------
 
-import Testing from "./Z refrence/Testing";
+import Testing from "./components/ZTemp";
 
 const App = () => {
   return (
