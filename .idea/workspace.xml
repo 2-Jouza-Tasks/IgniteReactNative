@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab608784-b932-4f88-8b1c-529d38195206" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/project2/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/components/Testing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/Testing.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2XTp7PYT7lIb7pl3kGUd4HS1Mfe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Jouza Local/IgniteReactNative&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab608784-b932-4f88-8b1c-529d38195206" name="Changes" comment="" />
+      <created>1698662756346</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698662756346</updated>
+    </task>
+    <servers />
+  </component>
+</project>
