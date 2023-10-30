@@ -1,7 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Home from './components/Home';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Home from "./components/Home";
+import Testing from "./components/Testing";
 
 export default function App() {
   return (
@@ -9,7 +10,9 @@ export default function App() {
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
 
-      <Home name='test'></Home>
+      <Home name="test"></Home>
+
+      <Testing str="TIME => 2:25 PM"></Testing>
     </View>
   );
 }
@@ -17,8 +20,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
