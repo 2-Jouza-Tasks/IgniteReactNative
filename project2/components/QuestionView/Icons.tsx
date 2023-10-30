@@ -1,12 +1,10 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { User } from "../../services/question-services";
 
 interface Props {
-  user: {
-    name: string;
-    avatar: string;
-  };
+  user: User
 }
 
 const Testing: FC<Props> = ({ user }) => {
@@ -17,8 +15,8 @@ const Testing: FC<Props> = ({ user }) => {
           <Image source={{ uri: user.avatar }} style={styles.avatarIcon} />
         </View>
         <Icon name="heart" size={24} color="white" style={styles.icon} />
-        <Icon name="comment" size={24} color="white" style={styles.icon} />
-        <Icon name="send" size={24} color="white" style={styles.icon} />
+        <Icon name="commenting" size={24} color="white" style={styles.icon} />
+        <Icon name="bookmark" size={24} color="white" style={styles.icon} />
         <Icon name="share" size={24} color="white" style={styles.icon} />
       </View>
     </View>
@@ -28,7 +26,6 @@ const Testing: FC<Props> = ({ user }) => {
 export default Testing;
 
 const styles = StyleSheet.create({
-
   iconContainer: {
     position: "absolute",
     bottom: 16,

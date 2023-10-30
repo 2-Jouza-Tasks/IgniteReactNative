@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import QuestionView from "./QuestionView/QuestionView ";
+import { getNextQuestion, Question } from "../services/question-services";
 
 interface Props {
   // str: string;
 }
 
 const ForYou: FC<Props> = () => {
-  const question = {
+  const question1 = {
     type: "mcq",
     id: 5059,
     playlist: "Period 6: 1865-1898",
@@ -36,7 +37,18 @@ const ForYou: FC<Props> = () => {
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
   };
+  const [question, setQuestion] = useState({});
 
+  useEffect(() => {
+    getNextQuestion()
+      .then((response) => {
+        console.log("RESPONSE: ", response);
+        console.log("DATA: ", response.data);
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  });
   return (
     <View style={styles.container}>
       <Text>For You</Text>

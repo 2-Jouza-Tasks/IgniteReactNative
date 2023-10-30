@@ -15,7 +15,7 @@ const for_you = {
   type: "mcq",
   id: 5059,
   playlist: "Period 6: 1865-1898",
-  description: "5.4 The Compromise of 1850 #apush",
+  description: "5.4 The Compromise of 1850",
   image:
     "https://cross-platform-rwa.rp.devfactory.com/images/5059%20-%20Free%20Soil%20Party.png",
   question: "How did the Free Soil Party differ from abolitionists?",

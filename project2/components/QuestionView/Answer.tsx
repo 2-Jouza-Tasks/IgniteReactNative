@@ -1,14 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { Option } from "../../services/question-services";
 
 interface Props {
-  option: {
-    id: string;
-    answer: string;
-  };
+  option: Option
 }
 
 const Answer: FC<Props> = ({ option }) => {
+
+  useEffect(()=>{
+
+  },[])
   return (
     <TouchableOpacity key={option.id} style={styles.option}>
       <Text id={option.id} style={styles.optionText}>

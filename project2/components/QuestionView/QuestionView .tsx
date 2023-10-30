@@ -3,57 +3,37 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Answer from "./Answer";
 import Icons from "./Icons";
 import User from "./User";
-
-interface Question {
-  type: string;
-  id: number;
-  playlist: string;
-  description: string;
-  image: string;
-  question: string;
-  options: Option[];
-  user: User;
-}
-
-interface Option {
-  id: string;
-  answer: string;
-}
-
-interface User {
-  name: string;
-  avatar: string;
-}
+import { Question } from "../../services/question-services";
 
 interface QuestionViewProps {
   question: Question;
 }
 
-const QuestionView: React.FC<QuestionViewProps> = ({ question }) => {
+const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
+  const { question, options, user, playlist, description, image } = Q;
   return (
     <View style={styles.container}>
-      <Image source={{ uri: question.image }} style={styles.backgroundImage} />
+      <Image source={{ uri: image }} style={styles.backgroundImage} />
+
       <View style={styles.contentContainer}>
+        {/* Question */}
         <View style={styles.questionContainer}>
-          <Text style={styles.overlayText}>{question.question}</Text>
+          <Text style={styles.overlayText}>{question}</Text>
         </View>
 
+        {/* Options */}
         <View style={styles.optionsContainer}>
-          {question.options.map((option) => (
+          {options.map((option) => (
             <Answer key={option.id} option={option} />
           ))}
         </View>
 
-        <User
-          user={question.user}
-          details={{
-            playlist: question.playlist,
-            description: question.description,
-          }}
-        ></User>
+        {/* User Details */}
+        <User user={user} playlist={playlist} description={description}></User>
       </View>
 
-      <Icons user={question.user}></Icons>
+      {/* Icons */}
+      <Icons user={user}></Icons>
     </View>
   );
 };
