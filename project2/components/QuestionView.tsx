@@ -48,16 +48,15 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
       ) : (
         <View style={styles.contentView}>
           <Image source={{ uri: image }} style={styles.backgroundImage} />
-          {IN_TESTING_MODE && (
-            <Text>
-              {id} - {index + 1}
-            </Text>
-          )}
 
           <View style={styles.contentContainer}>
             {/* Question */}
             <View style={styles.questionContainer}>
-              <Text style={styles.questionText}>{question}</Text>
+              <Text style={styles.questionText}>
+                {IN_TESTING_MODE && `${id} - ${index + 1}. `}
+
+                {question}
+              </Text>
             </View>
 
             {/* Bottom (Option & User) */}
@@ -109,8 +108,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // height: "100%",
-    borderWidth: 2,
-    borderColor: "red",
+
     ...testingModeStyle,
   },
 

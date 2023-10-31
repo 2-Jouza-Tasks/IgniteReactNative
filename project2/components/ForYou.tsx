@@ -21,6 +21,7 @@ const InfiniteScrollComponent: React.FC = () => {
     setIsLoading(true);
     getTheNextQuestion()
       .then((newQuestion) => {
+        // console.log('newQuestion')
         setData([...data, newQuestion]);
       })
       .catch((err) => {
@@ -44,7 +45,7 @@ const InfiniteScrollComponent: React.FC = () => {
       <View style={styles.header}>
         <AppTimer />
 
-        {!IN_TESTING_MODE && (
+        {IN_TESTING_MODE && (
           <Text style={styles.headerText}>
             {data.length} - {isLoading && "Loading..."}
           </Text>
@@ -64,9 +65,10 @@ const InfiniteScrollComponent: React.FC = () => {
           renderItem={({ item, index }) => (
             <QuestionView question={item} index={index} />
           )}
-          keyExtractor={(item, index) => item.id.toString()}
+          // keyExtractor={(item, index) => item.id.toString()}
+          keyExtractor={(item, index) => index.toString()}
           style={styles.flatList}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={5}
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading()}
         />
