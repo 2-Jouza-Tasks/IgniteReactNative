@@ -17,22 +17,17 @@ const Testing: FC<Props> = ({ user }) => {
 
   return (
     <View style={styles.iconContainer}>
-      <View style={styles.iconGroup}>
-        <View style={styles.avatarIconContainer}>
-          <Image source={{ uri: user.avatar }} style={styles.avatarIcon} />
-        </View>
-        {staticIcons.map(({ title, count }) => (
-          <Icon
-            key={title}
-            name={title}
-            size={24}
-            color="white"
-            style={styles.icon}
-          >
-            {count}
-          </Icon>
-        ))}
+      <View style={styles.iconView}>
+        <Image source={{ uri: user.avatar }} style={styles.avatarIcon} />
       </View>
+
+      {staticIcons.map(({ title, count }) => (
+        <View style={styles.iconView}>
+          <Icon key={title} name={title} size={30} color="white"></Icon>
+
+          <Text style={styles.iconText}>{count}</Text>
+        </View>
+      ))}
     </View>
   );
 };
@@ -41,25 +36,28 @@ export default Testing;
 
 const styles = StyleSheet.create({
   iconContainer: {
-    position: "absolute",
-    bottom: 16,
-    right: 16,
+    // flexDirection: "column",
+    width: "20%",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  iconView: {
+    display: "flex",
     flexDirection: "column",
-  },
-  avatarIconContainer: {
     alignItems: "center",
-    marginBottom: 8,
+    marginVertical: 10,
   },
+
   avatarIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 100,
+    borderColor: "white",
+    borderWidth: 2,
   },
-  iconGroup: {
-    alignItems: "center",
-  },
-  icon: {
-    marginVertical: 8,
+
+  iconText: {
+    color: "white",
   },
   avatar: {
     width: 40,

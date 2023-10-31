@@ -76,9 +76,16 @@ const InfiniteScrollComponent: React.FC = () => {
 
 const testingModeStyle = IN_TESTING_MODE
   ? {
-      borderWidth: 3,
-      borderColor: "red",
+      borderWidth: 4,
+      borderColor: "blue",
       marginBottom: 30,
+    }
+  : {};
+
+const testingModeStyle2 = IN_TESTING_MODE
+  ? {
+      borderWidth: 3,
+      borderColor: "green",
     }
   : {};
 
@@ -96,9 +103,9 @@ const styles = StyleSheet.create({
   },
 
   flatList: {
-    backgroundColor: "lightgray",
-    borderWidth: 3,
-    borderColor: "green",
+    flex: 1,
+    // backgroundColor: "lightgray",
+    ...testingModeStyle2,
   },
 });
 

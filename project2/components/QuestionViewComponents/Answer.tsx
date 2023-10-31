@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   option: {
     // width: "100%",
     // padding: 8,
+
     marginBottom: 8,
     borderRadius: 10,
     backgroundColor: "rgba(255,255,255, 0.5)",

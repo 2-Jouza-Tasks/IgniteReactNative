@@ -61,7 +61,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
               <Text style={styles.questionText}>{question}</Text>
             </View>
 
-            {/* Options */}
+            {/* Bottom (Option & User) */}
 
             <View style={styles.bottomContainer}>
               {isLoading ? (
@@ -81,6 +81,8 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
                       }}
                     />
                   ))}
+
+                  {/* User Details */}
                   <User
                     user={user}
                     playlist={playlist}
@@ -92,8 +94,6 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
               {/* Icons */}
               <Icons user={user}></Icons>
             </View>
-
-            {/* User Details */}
           </View>
         </View>
       )}
@@ -102,7 +102,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
 };
 const testingModeStyle = IN_TESTING_MODE
   ? {
-      borderColor: "blue",
+      borderColor: "red",
       borderWidth: 2,
     }
   : {};
@@ -110,7 +110,6 @@ const testingModeStyle = IN_TESTING_MODE
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: "100%",
 
     ...testingModeStyle,
   },
@@ -124,21 +123,21 @@ const styles = StyleSheet.create({
   },
   // Content
   contentContainer: {
-    flex: 1,
-    padding: 16,
-
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     paddingHorizontal: 10,
+    paddingVertical: 10,
   },
 
   // Question
   questionContainer: {
-    // marginBottom: 16,
-    height: "50%",
+    // height: "100%",
+    // flex: 1,
+
     alignContent: "center",
     justifyContent: "center",
+    marginBottom: 120,
   },
   questionText: {
     lineHeight: 26,
@@ -153,26 +152,19 @@ const styles = StyleSheet.create({
 
   // Bottom
   bottomContainer: {
-    height: "50%",
-    alignContent: "center",
-    justifyContent: "space-between",
+    // height: "50%",
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
   },
 
   optionsContainer: {
+    width: "80%",
+
     // marginBottom: 16,
-    width: "75%",
-  },
-
-  overlayText: {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    fontWeight: "bold",
-
-    // position: "absolute",
-    // backgroundColor: "rgba(0, 0, 0, 0.5)",
-    // padding: 8,
-    // fontSize: 16,
+    // height: "75%",
+    // flex: 1,
   },
 });
 

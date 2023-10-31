@@ -9,7 +9,7 @@ interface Props {
 }
 const Answer: FC<Props> = ({ user, description, playlist }) => {
   return (
-    <View style={styles.userDescriptionContainer}>
+    <View style={styles.userView}>
       <View style={styles.userInfoContainer}>
         <Text style={styles.userText}>{user.name}</Text>
       </View>
@@ -22,11 +22,14 @@ const Answer: FC<Props> = ({ user, description, playlist }) => {
 export default Answer;
 
 const styles = StyleSheet.create({
-  userDescriptionContainer: {},
+  userView: {
+    // flex: 1,
+  },
   userInfoContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
+    // flex: 1,
+    // flexDirection: "row",
+    // alignItems: "center",
+    // marginBottom: 8,
   },
 
   userText: {
