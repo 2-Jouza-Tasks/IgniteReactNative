@@ -6,13 +6,14 @@ import User from "./User";
 import { Question, getQuestionAnswer } from "../../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TimeTrackingApp from "./TimeTracking";
+import { IN_TESTING_MODE } from "../../services/TestingModeVariables";
 
 interface QuestionViewProps {
   index: number;
   question: Question;
 }
 
-const QuestionView: React.FC<QuestionViewProps> = ({ question: Q,index }) => {
+const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
   const { id, question, options, user, playlist, description, image } = Q;
 
   const [correctOption, setCorrectOption] = useState<string>();
@@ -48,10 +49,16 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q,index }) => {
     <View style={styles.container}>
       <Image source={{ uri: image }} style={styles.backgroundImage} />
 
+      {IN_TESTING_MODE && (
+        <Text>
+          {id} - {index + 1}
+        </Text>
+      )}
+
       <View style={styles.contentContainer}>
         <View style={styles.header}>
           {/* <TimeTrackingApp /> */}
-          <Text>For You : {id} - {index}</Text>
+
           <Icon name="search" size={24} color="white" />
         </View>
 
