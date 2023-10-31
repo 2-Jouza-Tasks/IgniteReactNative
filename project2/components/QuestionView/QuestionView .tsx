@@ -92,15 +92,13 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    borderBottomWidth: 1,
+    flex: 1,
+    // borderBottomWidth: 1,
     // borderColor: "lightgray",
-    margin:5,
+    // margin:5,
     // padding: 16,
     borderColor: "blue",
     borderWidth: 2,
-
-
   },
   header: {
     display: "flex",

@@ -12,28 +12,21 @@ import QuestionView from "./QuestionView/QuestionView ";
 const InfiniteScrollComponent: React.FC = () => {
   const [data, setData] = useState<Question[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasMoreData, setHasMoreData] = useState(true);
 
   const loadMoreData = () => {
-    if (!isLoading && hasMoreData) {
-      console.log('Load more')
-      setIsLoading(true);
-      getTheNextQuestion()
-        .then((newQuestion) => {
-          // console.log("question: ", newQuestion);
-          if (newQuestion.id) {
-            setData([...data, newQuestion]);
-          } else {
-            setHasMoreData(false);
-          }
-        })
-        .catch((err) => {
-          console.log("ERR: ", err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
+    setIsLoading(true);
+    // console.log("Load more");
+    getTheNextQuestion()
+      .then((newQuestion) => {
+        // console.log("question: ", newQuestion);
+        setData([...data, newQuestion]);
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -45,7 +38,6 @@ const InfiniteScrollComponent: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
       <FlatList
         data={data}
         keyExtractor={(item, index) => item.id.toString()}
@@ -55,7 +47,6 @@ const InfiniteScrollComponent: React.FC = () => {
         ListFooterComponent={renderFooter()}
         style={styles.container}
       />
-    </View>
   );
 };
 

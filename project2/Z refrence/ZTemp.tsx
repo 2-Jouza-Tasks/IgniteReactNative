@@ -1,11 +1,8 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-interface Props {
-  str: string;
-}
 
-const Testing: FC<Props> = ({ str }) => {
+const Testing: FC = () => {
   return (
     <View>
       <Text style={styles.container}>TESTING: {str}!</Text>
