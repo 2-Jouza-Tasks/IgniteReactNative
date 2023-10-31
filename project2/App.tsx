@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import HomeScreen from "./screens/HomeScreen";
 import TemplateScreen from "./screens/TemplateScreen";
+import { CURRENT_TIME, IN_TESTING_MODE } from "./services/TestingModeVariables";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +20,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <View style={styles.container}>
-        {/* <Testing str="TIME => 2:25 PM"></Testing> */}
+        {IN_TESTING_MODE && <Text>{CURRENT_TIME}</Text>}
+
         <Tab.Navigator>
           <Tab.Screen
             name="Home"
@@ -28,6 +30,7 @@ const App = () => {
               tabBarIcon: () => <Icon name="home" color={"gray"} size={30} />,
             }}
           />
+
           {staticScreens.map(({ title, icon }) => (
             <Tab.Screen
               name={title}

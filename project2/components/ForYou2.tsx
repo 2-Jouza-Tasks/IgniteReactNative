@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Question, getTheNextQuestion } from "../services/question-services";
 import QuestionView from "./QuestionView/QuestionView ";
+import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
 const InfiniteScrollComponent: React.FC = () => {
   const [data, setData] = useState<Question[]>([]);
@@ -33,20 +34,32 @@ const InfiniteScrollComponent: React.FC = () => {
     loadMoreData();
   }, []);
 
-  const renderFooter = () => {
+  const renderLoading = () => {
     return isLoading ? <ActivityIndicator size="large" color="blue" /> : null;
   };
 
   return (
+    <View style={styles.container}>
+      {IN_TESTING_MODE && (
+        <Text>
+          {data.length} - {isLoading && "Loading..."}{" "}
+        </Text>
+      )}
+
       <FlatList
         data={data}
         keyExtractor={(item, index) => item.id.toString()}
-        renderItem={({ item }) => <QuestionView question={item} />}
+        renderItem={({ item, index }) => (
+          <QuestionView question={item} index={index} />
+        )}
+        onEndReachedThreshold={5}
         onEndReached={loadMoreData}
-        onEndReachedThreshold={0.1}
-        ListFooterComponent={renderFooter()}
+        ListFooterComponent={renderLoading()}
         style={styles.container}
+        // Initially render only one item
+        // initialNumToRender={2}
       />
+    </View>
   );
 };
 
