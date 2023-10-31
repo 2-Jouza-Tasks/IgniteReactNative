@@ -3,16 +3,14 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { Option } from "../../services/question-services";
 
 interface Props {
-  option: Option
+  option: Option;
+  onPress: () => void;
 }
 
-const Answer: FC<Props> = ({ option }) => {
-
-  useEffect(()=>{
-
-  },[])
+const Answer: FC<Props> = ({ option,onPress }) => {
+  useEffect(() => {}, []);
   return (
-    <TouchableOpacity key={option.id} style={styles.option}>
+    <TouchableOpacity onPress={onPress} key={option.id} style={styles.option}>
       <Text id={option.id} style={styles.optionText}>
         {option.id}. {option.answer}
       </Text>

@@ -9,6 +9,10 @@ interface QuestionViewProps {
   question: Question;
 }
 
+
+const checkTheAnswer=()=>{
+  console.log('pressed')
+}
 const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
   const { question, options, user, playlist, description, image } = Q;
   return (
@@ -24,7 +28,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
         {/* Options */}
         <View style={styles.optionsContainer}>
           {options.map((option) => (
-            <Answer key={option.id} option={option} />
+            <Answer onPress={checkTheAnswer} key={option.id} option={option} />
           ))}
         </View>
 

@@ -37,22 +37,22 @@ const ForYou: FC<Props> = () => {
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
   };
-  const [question, setQuestion] = useState({});
+  const [question, setQuestion] = useState<Question>();
 
   useEffect(() => {
     getNextQuestion()
-      .then((response) => {
-        console.log("RESPONSE: ", response);
-        console.log("DATA: ", response.data);
+      .then((question) => {
+        // console.log("question: ", question);
+        setQuestion(question)
       })
       .catch((err) => {
         console.log("ERR: ", err);
       });
-  });
+  },[]);
   return (
     <View style={styles.container}>
       <Text>For You</Text>
-      <QuestionView question={question} />
+      {question && <QuestionView question={question} />}
     </View>
   );
 };
