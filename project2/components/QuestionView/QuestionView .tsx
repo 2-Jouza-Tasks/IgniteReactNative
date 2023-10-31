@@ -49,8 +49,8 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
 
       <View style={styles.contentContainer}>
         <View style={styles.header}>
-          <TimeTrackingApp />
-          <Text>For You : {question?.id}</Text>
+          {/* <TimeTrackingApp /> */}
+          <Text>For You : {id}</Text>
           <Icon name="search" size={24} color="white" />
         </View>
 
@@ -92,8 +92,9 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "white",
+    padding: 16,
+    borderBottomWidth: 1,
+    borderColor: "lightgray",
   },
   header: {
     display: "flex",
