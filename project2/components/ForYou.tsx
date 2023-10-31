@@ -1,85 +1,88 @@
-import React, { FC, useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import QuestionView from "./QuestionView/QuestionView ";
-import { getTheNextQuestion, Question } from "../services/question-services";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
+import { Question, getTheNextQuestion } from "../services/question-services";
+import { IN_TESTING_MODE } from "../services/TestingModeVariables";
+import AppTimer from "./AppTimer";
+import QuestionView from "./QuestionView/QuestionView";
 
-interface Props {
-  // str: string;
-}
-
-const ForYou: FC<Props> = () => {
-  const question1 = {
-    type: "mcq",
-    id: 5059,
-    playlist: "Period 6: 1865-1898",
-    description: "5.4 The Compromise of 1850",
-    image:
-      "https://cross-platform-rwa.rp.devfactory.com/images/5059%20-%20Free%20Soil%20Party.png",
-    question: "How did the Free Soil Party differ from abolitionists?",
-    options: [
-      {
-        id: "A",
-        answer:
-          "They wanted to stop the spread of slavery, not end it entirely",
-      },
-      {
-        id: "B",
-        answer: "They wanted all free Black Americans to move west",
-      },
-      {
-        id: "C",
-        answer:
-          'They wanted the western states to secede and form a "free" nation',
-      },
-    ],
-    user: {
-      name: "AP US History",
-      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
-    },
-  };
-
-  const [question, setQuestion] = useState<Question>();
+const InfiniteScrollComponent: React.FC = () => {
+  const [data, setData] = useState<Question[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const loadMoreData = () => {
     setIsLoading(true);
-    theNextQuestion();
-  }, []);
-
-  const theNextQuestion = () => {
+    // console.log("Load more");
     getTheNextQuestion()
-      .then((question) => {
-        // console.log("question: ", question);
-        setQuestion(question);
-        setIsLoading(false);
+      .then((newQuestion) => {
+        // console.log("question: ", newQuestion);
+        setData([...data, newQuestion]);
       })
       .catch((err) => {
         console.log("ERR: ", err);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
+
+  useEffect(() => {
+    loadMoreData();
+  }, []);
+
+  const renderLoading = () => {
+    return isLoading ? <ActivityIndicator size="large" color="blue" /> : null;
+  };
+
   return (
     <View style={styles.container}>
-      
-
-      {isLoading || !question ? (
-        <Text>Loading ...</Text>
-      ) : (
-        <QuestionView question={question} />
+      <AppTimer />
+      {IN_TESTING_MODE && (
+        <Text>
+          {data.length} - {isLoading && "Loading..."}{" "}
+        </Text>
       )}
 
-      <Text onPress={theNextQuestion}>Reload</Text>
+      <FlatList
+        data={data}
+        renderItem={({ item, index }) => (
+          <QuestionView question={item} index={index} />
+        )}
+        keyExtractor={(item, index) => item.id.toString()}
+
+        onEndReachedThreshold={5}
+        onEndReached={loadMoreData}
+        ListFooterComponent={renderLoading()}
+        style={styles.flatList}
+        // Initially render only one item
+      />
     </View>
   );
 };
 
-export default ForYou;
+const testingModeStyle = IN_TESTING_MODE
+  ? {
+      borderWidth: 3,
+      borderColor: "red",
+      marginBottom: 30,
+    }
+  : {};
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 3,
-    borderColor: "red",
-    borderRadius: 8,
+    flex: 1,
+    ...testingModeStyle,
   },
-
+  flatList: {
+    backgroundColor: "lightgray",
+    borderWidth: 3,
+    borderColor: "green",
+  },
 });
+
+export default InfiniteScrollComponent;

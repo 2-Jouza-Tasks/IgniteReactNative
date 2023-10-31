@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text } from "react-native";
+// import ForYou from "../components/ForYou";
 import ForYou from "../components/ForYou";
-import ForYou2 from "../components/ForYou2";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
 const HomeScreen: FC = () => {
@@ -9,7 +9,7 @@ const HomeScreen: FC = () => {
     <View style={styles.container}>
       {/* {IN_TESTING_MODE && <Text> Home Screen</Text>} */}
       {/* <ForYou /> */}
-      <ForYou2 />
+      <ForYou />
     </View>
   );
 };

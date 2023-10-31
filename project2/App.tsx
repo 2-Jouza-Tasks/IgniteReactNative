@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import HomeScreen from "./screens/HomeScreen";
 import TemplateScreen from "./screens/TemplateScreen";
 import { CURRENT_TIME, IN_TESTING_MODE } from "./services/TestingModeVariables";
+import ForYou from "./components/ForYou";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const App = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={ForYou}
           options={{
             tabBarIcon: () => <Icon name="home" color={"gray"} size={30} />,
           }}
@@ -35,7 +36,7 @@ const App = () => {
             name={title}
             key={title}
             options={{
-              tabBarIcon: () => <Icon name={icon} color={"black"} size={30} />,
+              tabBarIcon: () => <Icon name={icon} color={"gray"} size={30} />,
             }}
           >
             {() => <TemplateScreen title={title} icon={icon} />}
