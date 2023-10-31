@@ -16,6 +16,7 @@ const InfiniteScrollComponent: React.FC = () => {
 
   const loadMoreData = () => {
     if (!isLoading && hasMoreData) {
+      console.log('Load more')
       setIsLoading(true);
       getTheNextQuestion()
         .then((newQuestion) => {
@@ -52,6 +53,7 @@ const InfiniteScrollComponent: React.FC = () => {
         onEndReached={loadMoreData}
         onEndReachedThreshold={0.1}
         ListFooterComponent={renderFooter()}
+        style={styles.container}
       />
     </View>
   );
@@ -60,6 +62,8 @@ const InfiniteScrollComponent: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderWidth: 3,
+    borderColor: "red",
   },
 });
 
