@@ -8,8 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project2/components/ForYou.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/ForYou.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project2/components/QuestionView/Answer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/QuestionView/Answer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2/components/QuestionView/QuestionView .tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/QuestionView/QuestionView .tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2/services/question-services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project2/services/question-services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/components/QuestionView/Icons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/components/QuestionView/Icons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/project2/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project2/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project2/screens/HomeScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

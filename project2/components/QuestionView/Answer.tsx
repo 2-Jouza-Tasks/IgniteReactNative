@@ -1,6 +1,9 @@
 import React, { FC, useEffect } from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Option } from "../../services/question-services";
+import Icon from "react-native-vector-icons/FontAwesome";
+import * as Animatable from "react-native-animatable";
+import App from "../../App";
 
 interface Props {
   option: Option;
@@ -16,6 +19,7 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
   const { id, answer } = option;
   const { didTheUserPressed, itIsTheCorrectAnswer, itIsWhatTheUserSelected } =
     styleStatus;
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -29,13 +33,31 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
 
         didTheUserPressed && itIsTheCorrectAnswer && styles.correct,
 
-        itIsWhatTheUserSelected &&
-          (itIsTheCorrectAnswer ? styles.correct : styles.wrong),
+        itIsWhatTheUserSelected && !itIsTheCorrectAnswer && styles.wrong,
       ]}
     >
+      {/* <FontAwesomeIcon icon="fa-duotone fa-thumbs-up" bounce /> */}
+
       <Text id={id} style={styles.optionText}>
         {id}. {answer}
       </Text>
+
+      {didTheUserPressed && itIsWhatTheUserSelected && (
+        <Animatable.View
+          animation={itIsTheCorrectAnswer ? "flash" : "swing"}
+          iterationCount="infinite"
+          duration={1500}
+          // direction="reverse"
+          style={styles.animationContainer}
+        >
+          <Icon
+            name={itIsTheCorrectAnswer ? "thumbs-up" : "thumbs-down"}
+            size={24}
+            color="white"
+            style={styles.icon}
+          />
+        </Animatable.View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -54,18 +76,42 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   optionText: {
     fontSize: 16,
   },
-
+  animationContainer: {
+    // backgroundColor: "lightgray",
+    // width: 50,
+    // borderRadius: 10,
+    // padding: 10,
+    // display: "inline",
+  },
+  icon: {
+    paddingLeft: 50,
+  },
   pressed: {
-    underlayColor: "white",
+    // underlayColor: "white",
   },
   correct: {
-    backgroundColor: "green",
+    backgroundColor: "background: rgba(40, 177, 143, 0.7)",
   },
   wrong: {
-    backgroundColor: "red",
+    backgroundColor: "rgba(220, 95, 95, 0.7)",
+  },
+
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  primaryIcon: {
+    position: "absolute",
+  },
+  secondaryIcon: {
+    position: "absolute",
   },
 });

@@ -4,6 +4,8 @@ import Answer from "./Answer";
 import Icons from "./Icons";
 import User from "./User";
 import { Question, getQuestionAnswer } from "../../services/question-services";
+import Icon from "react-native-vector-icons/FontAwesome";
+import TimeTrackingApp from "./TimeTracking";
 
 interface QuestionViewProps {
   question: Question;
@@ -46,6 +48,12 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
       <Image source={{ uri: image }} style={styles.backgroundImage} />
 
       <View style={styles.contentContainer}>
+        <View style={styles.header}>
+          <TimeTrackingApp />
+          <Text>For You : {question?.id}</Text>
+          <Icon name="search" size={24} color="white" />
+        </View>
+
         {/* Question */}
         <View style={styles.questionContainer}>
           <Text style={styles.overlayText}>{question}</Text>
@@ -65,7 +73,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
                   didTheUserPressed: userPressed,
                   // try to move it to handle press function
                   itIsTheCorrectAnswer: option.id == correctOption,
-                  itIsWhatTheUserSelected: option.id ==userAnswer,
+                  itIsWhatTheUserSelected: option.id == userAnswer,
                 }}
               />
             ))}
@@ -86,6 +94,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   backgroundImage: {
     position: "absolute",

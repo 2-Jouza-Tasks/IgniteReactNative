@@ -5,8 +5,8 @@ import ForYou from "../components/ForYou";
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text> Home Screen</Text>
-      <ForYou/>
+      {/* <Text> Home Screen</Text> */}
+      <ForYou />
     </View>
   );
 };
@@ -14,5 +14,9 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
+  container: {
+    // flex: 1,
+    // justifyContent: "center",
+    alignItems: "center",
+  },
 });

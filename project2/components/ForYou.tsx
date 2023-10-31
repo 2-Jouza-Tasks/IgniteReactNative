@@ -12,7 +12,7 @@ const ForYou: FC<Props> = () => {
     type: "mcq",
     id: 5059,
     playlist: "Period 6: 1865-1898",
-    description: "5.4 The Compromise of 1850 #apush",
+    description: "5.4 The Compromise of 1850",
     image:
       "https://cross-platform-rwa.rp.devfactory.com/images/5059%20-%20Free%20Soil%20Party.png",
     question: "How did the Free Soil Party differ from abolitionists?",
@@ -37,12 +37,16 @@ const ForYou: FC<Props> = () => {
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
   };
-  
+
   const [question, setQuestion] = useState<Question>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
+    theNextQuestion();
+  }, []);
+
+  const theNextQuestion = () => {
     getTheNextQuestion()
       .then((question) => {
         // console.log("question: ", question);
@@ -53,17 +57,18 @@ const ForYou: FC<Props> = () => {
         console.log("ERR: ", err);
         setIsLoading(false);
       });
-  }, []);
-
+  };
   return (
     <View style={styles.container}>
-      <Text>For You</Text>
+      
 
       {isLoading || !question ? (
         <Text>Loading ...</Text>
       ) : (
         <QuestionView question={question} />
       )}
+
+      <Text onPress={theNextQuestion}>Reload</Text>
     </View>
   );
 };
@@ -76,4 +81,5 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderRadius: 8,
   },
+
 });

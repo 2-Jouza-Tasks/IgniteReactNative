@@ -4,20 +4,34 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { User } from "../../services/question-services";
 
 interface Props {
-  user: User
+  user: User;
 }
 
 const Testing: FC<Props> = ({ user }) => {
+  const staticIcons = [
+    { title: "heart", count: 87 },
+    { title: "commenting", count: 2 },
+    { title: "bookmark", count: 203 },
+    { title: "share", count: 17 },
+  ];
+
   return (
     <View style={styles.iconContainer}>
       <View style={styles.iconGroup}>
         <View style={styles.avatarIconContainer}>
           <Image source={{ uri: user.avatar }} style={styles.avatarIcon} />
         </View>
-        <Icon name="heart" size={24} color="white" style={styles.icon} />
-        <Icon name="commenting" size={24} color="white" style={styles.icon} />
-        <Icon name="bookmark" size={24} color="white" style={styles.icon} />
-        <Icon name="share" size={24} color="white" style={styles.icon} />
+        {staticIcons.map(({ title, count }) => (
+          <Icon
+            key={title}
+            name={title}
+            size={24}
+            color="white"
+            style={styles.icon}
+          >
+            {count}
+          </Icon>
+        ))}
       </View>
     </View>
   );
