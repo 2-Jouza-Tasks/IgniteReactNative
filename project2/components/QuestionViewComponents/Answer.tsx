@@ -42,7 +42,7 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
         <Animatable.View
           animation={itIsTheCorrectAnswer ? "flash" : "swing"}
           iterationCount="infinite"
-          duration={1500}
+          duration={1000}
         >
           {didTheUserPressed && itIsWhatTheUserSelected && (
             <Icon
@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 1,
     paddingVertical: 4,
-    width: "85%",
+    width: "90%",
   },
 });

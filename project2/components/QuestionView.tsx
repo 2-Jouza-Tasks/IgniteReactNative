@@ -46,9 +46,8 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
       {errorMessage ? (
         <Text>{errorMessage}</Text>
       ) : (
-        <View>
+        <View style={styles.contentView}>
           <Image source={{ uri: image }} style={styles.backgroundImage} />
-
           {IN_TESTING_MODE && (
             <Text>
               {id} - {index + 1}
@@ -62,7 +61,6 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
             </View>
 
             {/* Bottom (Option & User) */}
-
             <View style={styles.bottomContainer}>
               {isLoading ? (
                 <Text>Loading ...</Text>
@@ -110,8 +108,14 @@ const testingModeStyle = IN_TESTING_MODE
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    // height: "100%",
+    borderWidth: 2,
+    borderColor: "red",
     ...testingModeStyle,
+  },
+
+  contentView: {
+    flex: 1,
   },
   backgroundImage: {
     position: "absolute",
@@ -126,8 +130,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
   },
 
   // Question
@@ -137,7 +141,7 @@ const styles = StyleSheet.create({
 
     alignContent: "center",
     justifyContent: "center",
-    marginBottom: 120,
+    // marginBottom: 120,
   },
   questionText: {
     lineHeight: 26,
@@ -160,7 +164,7 @@ const styles = StyleSheet.create({
   },
 
   optionsContainer: {
-    width: "80%",
+    width: "85%",
 
     // marginBottom: 16,
     // height: "75%",

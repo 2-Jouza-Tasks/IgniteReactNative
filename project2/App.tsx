@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FA5 from "react-native-vector-icons/FontAwesome5";
@@ -27,7 +27,6 @@ const App = () => {
             tabBarIcon: () => <FA5 name="home" color={"gray"} size={30} />,
           }}
         />
-
         {staticScreens.map(({ title, icon }) => (
           <Tab.Screen
             name={title}
@@ -45,5 +44,3 @@ const App = () => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({});

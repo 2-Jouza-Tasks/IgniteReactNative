@@ -13,7 +13,7 @@ Change under this line
 */
 
 // Current_time = '7:37' + AM
-CURRENT_TIME = `HERE => 7:37 ${PM}`;
-IN_TESTING_MODE = true;
+CURRENT_TIME = `HERE => 1:42 ${PM}`;
+// IN_TESTING_MODE = true;
 
 export { IN_TESTING_MODE, CURRENT_TIME };

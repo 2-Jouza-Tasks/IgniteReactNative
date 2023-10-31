@@ -44,18 +44,19 @@ const InfiniteScrollComponent: React.FC = () => {
       <View style={styles.header}>
         <AppTimer />
 
-        {IN_TESTING_MODE && (
-          <Text>
+        {!IN_TESTING_MODE && (
+          <Text style={styles.headerText}>
             {data.length} - {isLoading && "Loading..."}
           </Text>
         )}
 
-        <Text>For You</Text>
+        <Text style={styles.headerText}>For You</Text>
 
         <Icon name="search" size={24} color="white" />
       </View>
 
-      {errorMessage ? (
+      <View>HERE</View>
+      {/* {errorMessage ? (
         <Text>{errorMessage}</Text>
       ) : (
         <FlatList
@@ -69,7 +70,7 @@ const InfiniteScrollComponent: React.FC = () => {
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading()}
         />
-      )}
+      )} */}
     </View>
   );
 };
@@ -99,9 +100,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    backgroundColor: "black",
+    paddingVertical: 5,
   },
 
+  headerText: {
+    color: "white",
+    fontWeight: "bold",
+  },
   flatList: {
     flex: 1,
     // backgroundColor: "lightgray",

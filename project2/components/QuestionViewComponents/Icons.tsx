@@ -18,12 +18,19 @@ const Testing: FC<Props> = ({ user }) => {
   return (
     <View style={styles.iconContainer}>
       <View style={styles.iconView}>
-        <Image source={{ uri: user.avatar }} style={styles.avatarIcon} />
+        <Image source={{ uri: user.avatar }} style={styles.avatarIcon}></Image>
+
+        <Icon
+          style={styles.plusIcon}
+          name="plus-circle"
+          size={25}
+          color="rgba(40, 177, 143, 1)"
+        ></Icon>
       </View>
 
       {staticIcons.map(({ title, count }) => (
         <View style={styles.iconView}>
-          <Icon key={title} name={title} size={30} color="white"></Icon>
+          <Icon key={title} name={title} size={30} color="white" />
 
           <Text style={styles.iconText}>{count}</Text>
         </View>
@@ -37,10 +44,11 @@ export default Testing;
 const styles = StyleSheet.create({
   iconContainer: {
     // flexDirection: "column",
-    width: "20%",
+    width: "10%",
     justifyContent: "space-between",
     alignItems: "center",
   },
+
   iconView: {
     display: "flex",
     flexDirection: "column",
@@ -55,14 +63,12 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 2,
   },
+  plusIcon: {
+    top: 30,
+    position: "absolute",
+  },
 
   iconText: {
     color: "white",
-  },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 8,
   },
 });
