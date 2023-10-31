@@ -1,20 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Answer from "./Answer";
 import Icons from "./Icons";
 import User from "./User";
-import { Question } from "../../services/question-services";
+import { Question, getQuestionAnswer } from "../../services/question-services";
 
 interface QuestionViewProps {
   question: Question;
 }
 
-
-const checkTheAnswer=()=>{
-  console.log('pressed')
-}
 const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
-  const { question, options, user, playlist, description, image } = Q;
+  const { id, question, options, user, playlist, description, image } = Q;
+
+  const [correctOption, setCorrectOption] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [userPressed, setUserPressed] = useState<boolean>(false);
+  const [userAnswer, setUserAnswer] = useState<string>("");
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    getQuestionAnswer(id)
+      .then((answer) => {
+        console.log("ANSWER: ", answer);
+        setCorrectOption(answer.correct_options[0].id);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const handlePress = (optionId: string) => {
+    const userPressedOnTheCorrectOption = optionId == correctOption;
+
+    setUserPressed(true);
+    setUserAnswer(optionId);
+    console.log("pressed", optionId, correctOption);
+    // console.log("pressed", userPressedOnTheCorrectOption);
+  };
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: image }} style={styles.backgroundImage} />
@@ -26,11 +52,25 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q }) => {
         </View>
 
         {/* Options */}
-        <View style={styles.optionsContainer}>
-          {options.map((option) => (
-            <Answer onPress={checkTheAnswer} key={option.id} option={option} />
-          ))}
-        </View>
+        {isLoading ? (
+          <Text>Loading ...</Text>
+        ) : (
+          <View style={styles.optionsContainer}>
+            {options.map((option) => (
+              <Answer
+                onPress={handlePress}
+                key={option.id}
+                option={option}
+                styleStatus={{
+                  didTheUserPressed: userPressed,
+                  // try to move it to handle press function
+                  itIsTheCorrectAnswer: option.id == correctOption,
+                  itIsWhatTheUserSelected: option.id ==userAnswer,
+                }}
+              />
+            ))}
+          </View>
+        )}
 
         {/* User Details */}
         <User user={user} playlist={playlist} description={description}></User>

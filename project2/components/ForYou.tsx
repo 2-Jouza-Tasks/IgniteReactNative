@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import QuestionView from "./QuestionView/QuestionView ";
-import { getNextQuestion, Question } from "../services/question-services";
+import { getTheNextQuestion, Question } from "../services/question-services";
 
 interface Props {
   // str: string;
@@ -37,22 +37,33 @@ const ForYou: FC<Props> = () => {
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
   };
+  
   const [question, setQuestion] = useState<Question>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getNextQuestion()
+    setIsLoading(true);
+    getTheNextQuestion()
       .then((question) => {
         // console.log("question: ", question);
-        setQuestion(question)
+        setQuestion(question);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log("ERR: ", err);
+        setIsLoading(false);
       });
-  },[]);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>For You</Text>
-      {question && <QuestionView question={question} />}
+
+      {isLoading || !question ? (
+        <Text>Loading ...</Text>
+      ) : (
+        <QuestionView question={question} />
+      )}
     </View>
   );
 };

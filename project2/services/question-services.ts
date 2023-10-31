@@ -1,5 +1,4 @@
-import { request } from './api';
-
+import { request } from "./api";
 
 export interface Question {
   type: string;
@@ -22,22 +21,16 @@ export interface User {
   avatar: string;
 }
 
-export interface AnswerOption {
-  id: string;
-  answer: string;
-}
-
 export interface QuestionAnswer {
+  // question id
   id: number;
-  correct_options: AnswerOption[];
+  correct_options: Option[];
 }
 
-export const getNextQuestion = async () => {
+export const getTheNextQuestion = async () => {
   return request<Question>(`/for_you`);
 };
 
-
 export const getQuestionAnswer = async (questionId: number) => {
-  return request<QuestionAnswer>(`/reveal?id${questionId}`);
+  return request<QuestionAnswer>(`/reveal?id=${questionId}`);
 };
-
