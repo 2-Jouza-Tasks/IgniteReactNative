@@ -9,7 +9,7 @@ import {
 import { Question, getTheNextQuestion } from "../services/question-services";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 import AppTimer from "./AppTimer";
-import QuestionView from "./QuestionView/QuestionView";
+import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const InfiniteScrollComponent: React.FC = () => {

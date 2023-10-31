@@ -42,7 +42,7 @@ const AppTimer: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  timerView:{
+  timerView: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

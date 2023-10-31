@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Answer from "../components/QuestionView/Answer";
-import Icons from "../components/QuestionView/Icons";
-import User from "../components/QuestionView/User";
+import Answer from "../components/QuestionViewComponents/Answer";
+import Icons from "../components/QuestionViewComponents/Icons";
+import User from "../components/QuestionViewComponents/User";
 import { Question, getQuestionAnswer } from "../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
-import TimeTrackingApp from "../components/QuestionView/TimeTracking";
+import TimeTrackingApp from "../components/QuestionViewComponents/TimeTracking";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
 interface QuestionViewProps {
