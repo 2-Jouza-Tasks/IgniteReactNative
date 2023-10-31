@@ -9,6 +9,7 @@ import {
 import { Question, getTheNextQuestion } from "../services/question-services";
 import QuestionView from "./QuestionView/QuestionView ";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
+import AppTimer from "./AppTimer";
 
 const InfiniteScrollComponent: React.FC = () => {
   const [data, setData] = useState<Question[]>([]);
@@ -40,6 +41,7 @@ const InfiniteScrollComponent: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <AppTimer />
       {IN_TESTING_MODE && (
         <Text>
           {data.length} - {isLoading && "Loading..."}{" "}
@@ -52,12 +54,12 @@ const InfiniteScrollComponent: React.FC = () => {
         renderItem={({ item, index }) => (
           <QuestionView question={item} index={index} />
         )}
-        onEndReachedThreshold={5}
+        initialNumToRender={10}
+        onEndReachedThreshold={10}
         onEndReached={loadMoreData}
         ListFooterComponent={renderLoading()}
-        style={styles.container}
+        style={styles.flatList}
         // Initially render only one item
-        // initialNumToRender={2}
       />
     </View>
   );
@@ -68,6 +70,12 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 3,
     borderColor: "red",
+    marginBottom: IN_TESTING_MODE ? 30 : 0,
+  },
+  flatList: {
+    backgroundColor: 'lightgray',
+    borderWidth: 3,
+    borderColor: "green",
   },
 });
 

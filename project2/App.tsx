@@ -17,44 +17,35 @@ const App = () => {
     { title: "Bookmarks", icon: "bookmark" },
     { title: "Profile", icon: "user" },
   ];
+
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        {IN_TESTING_MODE && <Text>{CURRENT_TIME}</Text>}
+      {/* {IN_TESTING_MODE && <Text>{CURRENT_TIME}</Text>} */}
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: () => <Icon name="home" color={"gray"} size={30} />,
+          }}
+        />
 
-        <Tab.Navigator>
+        {staticScreens.map(({ title, icon }) => (
           <Tab.Screen
-            name="Home"
-            component={HomeScreen}
+            name={title}
+            key={title}
             options={{
-              tabBarIcon: () => <Icon name="home" color={"gray"} size={30} />,
+              tabBarIcon: () => <Icon name={icon} color={"black"} size={30} />,
             }}
-          />
-
-          {staticScreens.map(({ title, icon }) => (
-            <Tab.Screen
-              name={title}
-              component={() => <TemplateScreen title={title} icon={icon} />}
-              options={{
-                tabBarIcon: () => (
-                  <Icon name={icon} color={"black"} size={30} />
-                ),
-              }}
-            />
-          ))}
-        </Tab.Navigator>
-      </View>
+          >
+            {() => <TemplateScreen title={title} icon={icon} />}
+          </Tab.Screen>
+        ))}
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});
