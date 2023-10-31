@@ -55,8 +55,8 @@ const InfiniteScrollComponent: React.FC = () => {
         <Icon name="search" size={24} color="white" />
       </View>
 
-      <View>HERE</View>
-      {/* {errorMessage ? (
+      {/* <View>HERE</View> */}
+      {errorMessage ? (
         <Text>{errorMessage}</Text>
       ) : (
         <FlatList
@@ -70,7 +70,7 @@ const InfiniteScrollComponent: React.FC = () => {
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading()}
         />
-      )} */}
+      )}
     </View>
   );
 };
