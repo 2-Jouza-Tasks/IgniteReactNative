@@ -4,8 +4,6 @@ import Answer from "./Answer";
 import Icons from "./Icons";
 import User from "./User";
 import { Question, getQuestionAnswer } from "../../services/question-services";
-import Icon from "react-native-vector-icons/FontAwesome";
-import TimeTrackingApp from "./TimeTracking";
 import { IN_TESTING_MODE } from "../../services/TestingModeVariables";
 
 interface QuestionViewProps {
@@ -21,28 +19,28 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
   const [userPressed, setUserPressed] = useState<boolean>(false);
   const [userAnswer, setUserAnswer] = useState<string>("");
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   useEffect(() => {
     setIsLoading(true);
 
     getQuestionAnswer(id)
       .then((answer) => {
-        console.log("ANSWER: ", answer);
+        // console.log("ANSWER: ", answer);
         setCorrectOption(answer.correct_options[0].id);
-        setIsLoading(false);
       })
       .catch((err) => {
-        console.log("ERR: ", err);
+        // console.log("ERR: ", err);
+        setErrorMessage(err.message);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }, []);
 
   const handlePress = (optionId: string) => {
-    const userPressedOnTheCorrectOption = optionId == correctOption;
-
     setUserPressed(true);
     setUserAnswer(optionId);
-    console.log("pressed", optionId, correctOption);
-    // console.log("pressed", userPressedOnTheCorrectOption);
   };
 
   return (
@@ -55,12 +53,10 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         </Text>
       )}
 
-      <View style={styles.contentContainer}>
-        <View style={styles.header}>
-          {/* <TimeTrackingApp /> */}
+      {errorMessage && <Text>{errorMessage}</Text>}
 
-          <Icon name="search" size={24} color="white" />
-        </View>
+      <View style={styles.contentContainer}>
+      
 
         {/* Question */}
         <View style={styles.questionContainer}>
@@ -101,7 +97,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
- 
+
     // borderBottomWidth: 1,
     // borderColor: "lightgray",
     // margin:5,
@@ -109,11 +105,7 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderWidth: 2,
   },
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
+
   backgroundImage: {
     position: "absolute",
     top: 0,

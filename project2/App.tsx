@@ -2,11 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import FA5 from "react-native-vector-icons/FontAwesome5";
 
-import HomeScreen from "./screens/HomeScreen";
 import TemplateScreen from "./screens/TemplateScreen";
-import { CURRENT_TIME, IN_TESTING_MODE } from "./services/TestingModeVariables";
 import ForYou from "./components/ForYou";
 
 const Tab = createBottomTabNavigator();
@@ -21,13 +19,12 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {/* {IN_TESTING_MODE && <Text>{CURRENT_TIME}</Text>} */}
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
           component={ForYou}
           options={{
-            tabBarIcon: () => <Icon name="home" color={"gray"} size={30} />,
+            tabBarIcon: () => <FA5 name="home" color={"gray"} size={30} />,
           }}
         />
 
@@ -36,7 +33,7 @@ const App = () => {
             name={title}
             key={title}
             options={{
-              tabBarIcon: () => <Icon name={icon} color={"gray"} size={30} />,
+              tabBarIcon: () => <FA5 name={icon} color={"gray"} size={30} />,
             }}
           >
             {() => <TemplateScreen title={title} icon={icon} />}

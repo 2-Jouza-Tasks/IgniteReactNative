@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import FA5 from "react-native-vector-icons/FontAwesome5";
 
 const AppTimer: React.FC = () => {
   const [isActive, setIsActive] = useState<boolean>(true);
@@ -26,19 +27,28 @@ const AppTimer: React.FC = () => {
   };
 
   return (
-    <Text style={styles.timerText}>
-      {/* hours */}
-      {/* {formatTime(Math.floor(duration / 3600))}: */}
-      {/* Minutes: Seconds */}
-      {formatTime(Math.floor((duration % 3600) / 60))}:
-      {formatTime(duration % 60)}
-    </Text>
+    <View style={styles.timerView}>
+      <FA5 name="stopwatch" size={24} color="time" />
+
+      <Text style={styles.timerText}>
+        {/* hours */}
+        {/* {formatTime(Math.floor(duration / 3600))}: */}
+        {/* Minutes: Seconds */}
+        {formatTime(Math.floor((duration % 3600) / 60))}:
+        {formatTime(duration % 60)}
+      </Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  timerView:{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
   timerText: {
-    // marginLeft: 5,
+    marginLeft: 5,
   },
 });
 
