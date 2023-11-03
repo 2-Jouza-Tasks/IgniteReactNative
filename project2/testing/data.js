@@ -1,4 +1,40 @@
 const dataWithAnswers = [
+  // id: 2979,
+  {
+    type: "mcq",
+    id: 2979,
+    playlist: "Period 6: 1865-1898",
+    description: "5.5 Sectional Conflict: Regional Differences #apush",
+    question:
+      "What were the two largest immigrant groups during the mid-1800's?",
+    image:
+      "https://cross-platform-rwa.rp.devfactory.com/images/2979%20-%20german%20and%20irish%20immigrant%20groups.png",
+    options: [
+      {
+        id: "A",
+        answer: "German & Irish",
+      },
+      {
+        id: "B",
+        answer: "Italian & German",
+      },
+      {
+        id: "C",
+        answer: "Chinese & Japanese",
+      },
+    ],
+    user: {
+      name: "AP US History",
+      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
+    },
+    correct_options: [
+      {
+        id: "A",
+        answer: "German & Irish",
+      },
+    ],
+  },
+  // id: 3219,
   {
     type: "mcq",
     id: 3219,
@@ -26,7 +62,49 @@ const dataWithAnswers = [
       name: "AP US History",
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
+    correct_options: [
+      {
+        id: "A",
+        answer: "Protestants",
+      },
+    ],
   },
+  // id: 3794,
+  {
+    type: "mcq",
+    id: 3794,
+    playlist: "Period 6: 1865-1898",
+    description: "5.5 Sectional Conflict: Regional Differences #apush",
+    image:
+      "https://cross-platform-rwa.rp.devfactory.com/images/3794%20-%20industrial%20vs%20agricultural%20economy.png",
+    question:
+      "Aside from slavery, what was the most significant difference betweent the North and South during the mid-1800s?",
+    options: [
+      {
+        id: "A",
+        answer: "An industrial vs. agricultural economy",
+      },
+      {
+        id: "B",
+        answer: "Income inequality",
+      },
+      {
+        id: "C",
+        answer: "Dependence on imports",
+      },
+    ],
+    user: {
+      name: "AP US History",
+      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
+    },
+    correct_options: [
+      {
+        id: "A",
+        answer: "An industrial vs. agricultural economy",
+      },
+    ],
+  },
+  // id: 5059,
   {
     type: "mcq",
     id: 5059,
@@ -63,6 +141,7 @@ const dataWithAnswers = [
       },
     ],
   },
+  // id: 5889,
   {
     type: "mcq",
     id: 5889,
@@ -91,7 +170,14 @@ const dataWithAnswers = [
       name: "AP US History",
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
+    correct_options: [
+      {
+        id: "A",
+        answer: "Debates over the spread of slavery in new states",
+      },
+    ],
   },
+  // id: 6194,
   {
     type: "mcq",
     id: 6194,
@@ -121,7 +207,15 @@ const dataWithAnswers = [
       name: "AP US History",
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
+    correct_options: [
+      {
+        id: "A",
+        answer:
+          "Slavery gave black people a better life than if they lived in a free society",
+      },
+    ],
   },
+  // id: 7069,
   {
     type: "mcq",
     id: 7069,
@@ -148,92 +242,14 @@ const dataWithAnswers = [
       name: "AP US History",
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
-  },
-  {
-    type: "mcq",
-    id: 7627,
-    playlist: "Period 6: 1865-1898",
-    description: "5.5 Sectional Conflict: Regional Differences #apush",
-    image:
-      "https://cross-platform-rwa.rp.devfactory.com/images/7627%20-%20The%20Know-Nothing%20Party.png",
-    question:
-      "What was the most prominent nativist group during the mid-1800's?",
-    options: [
+    correct_options: [
       {
         id: "A",
-        answer: "The Know-Nothing Party",
-      },
-      {
-        id: "B",
-        answer: "The Immigrant Exclusion League",
-      },
-      {
-        id: "C",
-        answer: "The American Prosperity Group",
+        answer: "Sectional disagreements over slavery",
       },
     ],
-    user: {
-      name: "AP US History",
-      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
-    },
   },
-  {
-    type: "mcq",
-    id: 8282,
-    playlist: "Period 6: 1865-1898",
-    description: "5.4 The Compromise of 1850 #apush",
-    image:
-      "https://cross-platform-rwa.rp.devfactory.com/images/8282%20-%20California%20Compromise%20of%201850.png",
-    question:
-      "As part of the Compromise of 1850, which state was admitted as a free state?",
-    options: [
-      {
-        id: "A",
-        answer: "California",
-      },
-      {
-        id: "B",
-        answer: "Kansas",
-      },
-      {
-        id: "C",
-        answer: "Oregon",
-      },
-    ],
-    user: {
-      name: "AP US History",
-      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
-    },
-  },
-
-  {
-    type: "mcq",
-    id: 3794,
-    playlist: "Period 6: 1865-1898",
-    description: "5.5 Sectional Conflict: Regional Differences #apush",
-    image:
-      "https://cross-platform-rwa.rp.devfactory.com/images/3794%20-%20industrial%20vs%20agricultural%20economy.png",
-    question:
-      "Aside from slavery, what was the most significant difference betweent the North and South during the mid-1800s?",
-    options: [
-      {
-        id: "A",
-        answer: "An industrial vs. agricultural economy",
-      },
-      {
-        id: "B",
-        answer: "Income inequality",
-      },
-      {
-        id: "C",
-        answer: "Dependence on imports",
-      },
-    ],
-    user: {
-      name: "AP US History",
-      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
-    },
-  },
+  // id: 7228,
   {
     type: "mcq",
     id: 7228,
@@ -263,10 +279,128 @@ const dataWithAnswers = [
       name: "AP US History",
       avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
     },
+    correct_options: [
+      {
+        id: "A",
+        answer:
+          "It created fears that white northerner's would initiate acts of violence to end slavery",
+      },
+    ],
+  },
+  // id: 7627,
+  {
+    type: "mcq",
+    id: 7627,
+    playlist: "Period 6: 1865-1898",
+    description: "5.5 Sectional Conflict: Regional Differences #apush",
+    image:
+      "https://cross-platform-rwa.rp.devfactory.com/images/7627%20-%20The%20Know-Nothing%20Party.png",
+    question:
+      "What was the most prominent nativist group during the mid-1800's?",
+    options: [
+      {
+        id: "A",
+        answer: "The Know-Nothing Party",
+      },
+      {
+        id: "B",
+        answer: "The Immigrant Exclusion League",
+      },
+      {
+        id: "C",
+        answer: "The American Prosperity Group",
+      },
+    ],
+    user: {
+      name: "AP US History",
+      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
+    },
+    correct_options: [
+      {
+        id: "A",
+        answer: "The Know-Nothing Party",
+      },
+    ],
+  },
+  // id: 8282,
+  {
+    type: "mcq",
+    id: 8282,
+    playlist: "Period 6: 1865-1898",
+    description: "5.4 The Compromise of 1850 #apush",
+    image:
+      "https://cross-platform-rwa.rp.devfactory.com/images/8282%20-%20California%20Compromise%20of%201850.png",
+    question:
+      "As part of the Compromise of 1850, which state was admitted as a free state?",
+    options: [
+      {
+        id: "A",
+        answer: "California",
+      },
+      {
+        id: "B",
+        answer: "Kansas",
+      },
+      {
+        id: "C",
+        answer: "Oregon",
+      },
+    ],
+    user: {
+      name: "AP US History",
+      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
+    },
+    correct_options: [
+      {
+        id: "A",
+        answer: "California",
+      },
+    ],
   },
 ];
 const ids = dataWithAnswers.map((elem) => elem.id);
+
+const correctAnswers = dataWithAnswers.map((elem) => {
+  return { [elem.id]: elem.correct_options[0].id };
+});
+
+console.log("IDS: ", ids);
+// [2979, 3219, 3794, 5059, 5889, 6194, 7069, 7228, 7627, 8282]
+console.log("CORRECTS: ", correctAnswers);
+// ALL => A (but need to redo it in dynamic way)
+
+const idForNewData = {};
+const entireNewData = [];
+
+const getAmountOfData = async (amount = 100) => {
+  for (let i = 0; i < amount; i++) {
+    const newResponse = await fetch(
+      `https://cross-platform.rp.devfactory.com/for_you`
+    );
+    const newQuestion = await newResponse.json();
+    // console.log("NEWQUESTION: ", newQuestion);
+    console.log("NEW ID: ", i, newQuestion.id);
+    entireNewData.push(newQuestion);
+
+    if (!idForNewData[newQuestion.id]) {
+      idForNewData[newQuestion.id] = newQuestion;
+    }
+  }
+  console.log("FOR FINISHED");
+  // console.log("ID_FOR_NEW_DATA", idForNewData);
+  console.log("IDS", Object.keys(idForNewData));
+  console.log("IDS_Count", Object.keys(idForNewData).length);
+  console.log("entireNewData", entireNewData.length);
+  
+};
+// getAmountOfData(1);
+getAmountOfData(50);
+// getAmountOfData(100);
+// getAmountOfData(200);
+
 /*
+IDS => 10
+2979
 3219  3794
 5059 5889
 6194
@@ -274,5 +408,41 @@ const ids = dataWithAnswers.map((elem) => elem.id);
 8282
 */
 
-// [ , , , , ]
-//
+/*
+Example
+id: 2979,
+  {
+    type: "mcq",
+    id: 2979,
+    playlist: "Period 6: 1865-1898",
+    description: "5.5 Sectional Conflict: Regional Differences #apush",
+    question:
+      "What were the two largest immigrant groups during the mid-1800's?",
+    image:
+      "https://cross-platform-rwa.rp.devfactory.com/images/2979%20-%20german%20and%20irish%20immigrant%20groups.png",
+    options: [
+      {
+        id: "A",
+        answer: "German & Irish",
+      },
+      {
+        id: "B",
+        answer: "Italian & German",
+      },
+      {
+        id: "C",
+        answer: "Chinese & Japanese",
+      },
+    ],
+    user: {
+      name: "AP US History",
+      avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
+    },
+    correct_options: [
+      {
+        id: "A",
+        answer: "German & Irish",
+      },
+    ],
+  },
+  */

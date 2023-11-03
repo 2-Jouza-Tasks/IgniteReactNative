@@ -34,3 +34,17 @@ export const getTheNextQuestion = async () => {
 export const getQuestionAnswer = async (questionId: number) => {
   return request<QuestionAnswer>(`/reveal?id=${questionId}`);
 };
+
+export const getANewQuestionAndQuestionAnswer = async () => {
+  const newQuestionWithAnswer ={}
+  try {
+  const response=await request<Question>(`/for_you`);
+  console.log(response)
+  request<QuestionAnswer>(`/reveal?id=${questionId}`);
+
+  } catch (error) {
+    
+  }
+};
+
+getANewQuestionAndQuestionAnswer()
