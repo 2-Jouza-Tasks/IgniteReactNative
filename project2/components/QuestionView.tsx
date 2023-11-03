@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import Answer from "./QuestionViewComponents/Answer";
 import Icons from "./QuestionViewComponents/Icons";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import User from "./QuestionViewComponents/User";
 import { QuestionWithTheCorrectAnswer } from "../services/question-services";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
@@ -33,54 +35,59 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentView}>
-        <Image
-          resizeMode="cover"
-          source={{ uri: image }}
-          style={styles.backgroundImage}
-        />
+      <Image
+        resizeMode="cover"
+        source={{ uri: image }}
+        style={styles.backgroundImage}
+      />
 
-        {/* Stat of Content Container */}
-        <View style={styles.contentContainer}>
-          {/* Question */}
-          <View style={styles.questionContainer}>
-            <Text style={styles.questionText}>
-              {IN_TESTING_MODE && `${index}.${id}-`}
+      {/* Stat of Content Container */}
+      <View style={styles.contentContainer}>
+        {/* Question */}
+        <View style={styles.questionContainer}>
+          <Text style={styles.questionText}>
+            {IN_TESTING_MODE && `${index}.${id}- \n`}
 
-              {question}
-            </Text>
-          </View>
-
-          {/* Bottom (Option & User) */}
-          <View style={styles.bottomContainer}>
-            <View style={styles.optionsContainer}>
-              {options.map((option, index) => (
-                <Answer
-                  onPress={handlePress}
-                  key={`${index}.${id}`}
-                  option={option}
-                  styleStatus={{
-                    didTheUserPressed: userPressed,
-                    itIsTheCorrectAnswer: option.id == correct_option_id,
-                    itIsWhatTheUserSelected: option.id == userAnswer,
-                  }}
-                />
-              ))}
-
-              <User
-                user={user}
-                playlist={playlist}
-                description={description}
-              ></User>
-            </View>
-            {/* User Details */}
-
-            {/* Icons */}
-            <Icons user={user}></Icons>
-          </View>
+            {question}
+          </Text>
         </View>
-        {/* End of Content Container */}
+
+        {/* Bottom (Option & User) */}
+        <View style={styles.bottomContainer}>
+          <View style={styles.optionsContainer}>
+            {options.map((option, index) => (
+              <Answer
+                onPress={handlePress}
+                key={`${index}.${id}`}
+                option={option}
+                styleStatus={{
+                  didTheUserPressed: userPressed,
+                  itIsTheCorrectAnswer: option.id == correct_option_id,
+                  itIsWhatTheUserSelected: option.id == userAnswer,
+                }}
+              />
+            ))}
+
+            <User
+              user={user}
+              playlist={playlist}
+              description={description}
+            ></User>
+          </View>
+          {/* User Details */}
+
+          {/* Icons */}
+          <Icons user={user}></Icons>
+        </View>
       </View>
+      <View style={styles.playlistViewMain}>
+        <View style={styles.playlistView}>
+          <Icon name="play-circle" size={25} color="white"></Icon>
+          <Text style={styles.playlistText}>Playlist - Unit#: {playlist}</Text>
+        </View>
+        <Icon name="chevron-right" size={25} color="white"></Icon>
+      </View>
+      {/* End of Content Container */}
     </View>
   );
 };
@@ -91,16 +98,19 @@ const testingModeStyle = IN_TESTING_MODE
     }
   : {};
 
+const testingModeStyle2 = IN_TESTING_MODE
+  ? {
+      borderColor: "yellow",
+      borderWidth: 2,
+    }
+  : {};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Dimensions.get("window").height, // Full screen height
-    // height: "100%",
+    height: Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 50),
   },
 
-  contentView: {
-    flex: 1,
-  },
   backgroundImage: {
     position: "absolute",
     top: 0,
@@ -111,9 +121,10 @@ const styles = StyleSheet.create({
   // Content
   contentContainer: {
     flex: 1,
-    display: "flex",
     justifyContent: "space-between",
     paddingVertical: 15,
+    paddingHorizontal: 15,
+
     ...testingModeStyle,
   },
 
@@ -121,35 +132,65 @@ const styles = StyleSheet.create({
   questionContainer: {
     // flex: 1,
     // marginBottom: 120,
-    justifyContent: "flex-start",
-    paddingHorizontal: 15,
+    // justifyContent: "flex-start",
+    justifyContent: "center",
+    // alignItems: "center",
+    // paddingVertical: 50,
+    flexGrow: 3,
+    ...testingModeStyle2,
+    width: "95%",
   },
   questionText: {
-    lineHeight: 26,
+    lineHeight: 30,
     fontSize: 22,
     color: "white",
     backgroundColor: "rgba(0, 0, 0, 0.6)",
     padding: 12,
     borderRadius: 10,
     textAlign: "left",
-    fontWeight: "bold",
+    fontWeight: "500",
   },
 
   // Bottom
   bottomContainer: {
-    display: "flex",
     flexDirection: "row",
     // justifyContent: "space-between",
     alignContent: "flex-end",
     alignItems: "flex-end",
     // alignSelf: "flex-end",
     // justifyContent: "flex-end",
+    flexGrow: 1,
   },
 
   optionsContainer: {
     width: "85%",
-    paddingLeft: 15,
     paddingRight: 5,
+    rowGap: 10,
+  },
+
+  playlistViewMain: {
+    paddingVertical: 10,
+    backgroundColor: "rgba(22, 22, 22, 1)",
+    paddingHorizontal: 10,
+    alignSelf: "stretch",
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  playlistView: {
+    flexDirection: "row",
+    columnGap: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  playlistText: {
+    color: "white",
+    fontSize: 14,
+    fontWeight: "500",
+    // justifyContent: "flex-start",
+    // alignSelf: "flex-start",
+    alignItems: "flex-start",
+
+    // flexGrow: 5,
   },
 });
 

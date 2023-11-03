@@ -43,15 +43,13 @@ export default Icons;
 
 const styles = StyleSheet.create({
   iconContainer: {
-    display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",
     rowGap: 15,
-    paddingRight: 5,
+    marginLeft: 5,
   },
 
   iconView: {
-    display: "flex",
     alignItems: "center",
   },
 
@@ -62,9 +60,13 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 2,
   },
+
   plusIcon: {
     bottom: -10,
+    alignItems: "center",
     position: "absolute",
+    backgroundColor: "white",
+    borderRadius: 500,
   },
 
   iconText: {

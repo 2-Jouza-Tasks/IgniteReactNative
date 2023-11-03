@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import ForYou from "../components/ForYou";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
-const HomeScreen: FC = () => {
+const HomeScreen: FC<{}> = () => {
   return (
     <View style={styles.container}>
       <ForYou />

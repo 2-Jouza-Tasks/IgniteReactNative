@@ -28,7 +28,7 @@ const AppTimer: React.FC = () => {
 
   return (
     <View style={styles.timerView}>
-      <FA5 name="stopwatch" size={24} color="gray" />
+      <FA5 name="stopwatch" size={24} color="white" />
 
       <Text style={styles.timerText}>
         {/* hours */}
@@ -43,7 +43,6 @@ const AppTimer: React.FC = () => {
 
 const styles = StyleSheet.create({
   timerView: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
   },

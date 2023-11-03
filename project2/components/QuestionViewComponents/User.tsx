@@ -14,7 +14,6 @@ const Answer: FC<Props> = ({ user, description, playlist }) => {
         <Text style={styles.userText}>{user.name}</Text>
       </View>
       <Text style={styles.descriptionText}>{description}</Text>
-      <Text style={styles.playlistText}>Playlist - Unit - {playlist}</Text>
     </View>
   );
 };
@@ -34,14 +33,11 @@ const styles = StyleSheet.create({
 
   userText: {
     fontSize: 16,
+    fontWeight: "bold",
     color: "white",
   },
   descriptionText: {
     color: "white",
     fontSize: 14,
-  },
-  playlistText: {
-    color: "white",
-    fontSize: 12,
   },
 });

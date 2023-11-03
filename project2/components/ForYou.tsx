@@ -5,6 +5,7 @@ import {
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import {
   QuestionWithTheCorrectAnswer,
@@ -70,11 +71,19 @@ const InfiniteScrollComponent: React.FC = () => {
           )}
           keyExtractor={(item, i) => `${i}-${item.id}`}
           style={styles.flatList}
+          // Rendering Data
           onEndReachedThreshold={0.5}
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading}
           initialNumToRender={10}
           maxToRenderPerBatch={10}
+          // View
+          showsVerticalScrollIndicator={false}
+          snapToInterval={
+            Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 50)
+          }
+          snapToAlignment="start"
+          decelerationRate="normal"
         />
       )}
     </View>
@@ -85,7 +94,6 @@ const testingModeStyle = IN_TESTING_MODE
   ? {
       borderWidth: 4,
       borderColor: "blue",
-      marginBottom: 30,
     }
   : {};
 
@@ -102,18 +110,26 @@ const styles = StyleSheet.create({
     ...testingModeStyle,
   },
   header: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     paddingHorizontal: 15,
-    backgroundColor: "black",
+    // backgroundColor: "none",
     paddingVertical: 5,
+    position: "absolute",
+    top: 20,
+    zIndex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+
+    width: "100%",
+    justifyContent: "space-between",
+    // ...testingModeStyle,
   },
 
   headerText: {
     color: "white",
     fontWeight: "bold",
+
+    borderBottomWidth: 5,
+    borderColor: "white",
   },
   flatList: {
     flex: 1,

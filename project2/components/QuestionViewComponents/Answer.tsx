@@ -45,8 +45,9 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
           {didTheUserPressed && itIsWhatTheUserSelected && (
             <Icon
               name={itIsTheCorrectAnswer ? "thumbs-up" : "thumbs-down"}
-              size={24}
+              size={30}
               color="white"
+              style={styles.icon}
             />
           )}
         </Animatable.View>
@@ -61,12 +62,9 @@ const styles = StyleSheet.create({
   option: {
     // width: "100%",
     // padding: 8,
-    marginBottom: 8,
     borderRadius: 10,
     backgroundColor: "rgba(255,255,255, 0.5)",
-    borderColor: "rgba(255,255,255, 0.5)",
 
-    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -88,8 +86,10 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: "500",
     color: "white",
-    textShadow: `2px 2px 1px black`,
+    // textShadow: `5px 5px 2px black`,
     paddingVertical: 4,
-    width: "90%",
+
+    width: "85%",
   },
+  icon: {},
 });
