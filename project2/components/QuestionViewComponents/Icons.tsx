@@ -29,13 +29,8 @@ const Icons: FC<Props> = ({ user }) => {
       </View>
 
       {staticIcons.map(({ title, count }, index) => (
-        <View style={styles.iconView}>
-          <Icon
-            key={`${index}.${title}`}
-            name={title}
-            size={30}
-            color="white"
-          />
+        <View style={styles.iconView} key={`${index}.${title}`}>
+          <Icon name={title} size={30} color="white" />
 
           <Text style={styles.iconText}>{count}</Text>
         </View>
@@ -48,17 +43,16 @@ export default Icons;
 
 const styles = StyleSheet.create({
   iconContainer: {
-    // flexDirection: "column",
-    width: "10%",
-    justifyContent: "space-between",
+    display: "flex",
+    justifyContent: "flex-end",
     alignItems: "center",
+    rowGap: 15,
+    paddingRight: 5,
   },
 
   iconView: {
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
-    marginVertical: 10,
   },
 
   avatarIcon: {
@@ -69,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   plusIcon: {
-    top: 30,
+    bottom: -10,
     position: "absolute",
   },
 

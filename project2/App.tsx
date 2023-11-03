@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FA5 from "react-native-vector-icons/FontAwesome5";
@@ -25,14 +25,17 @@ const App = () => {
           component={ForYou}
           options={{
             tabBarIcon: () => <FA5 name="home" color={"gray"} size={30} />,
+            headerShown: false,
           }}
         />
+
         {staticScreens.map(({ title, icon }, index) => (
           <Tab.Screen
             name={title}
             key={`index.title`}
             options={{
               tabBarIcon: () => <FA5 name={icon} color={"gray"} size={30} />,
+              headerShown: false,
             }}
           >
             {() => <TemplateScreen title={title} icon={icon} />}

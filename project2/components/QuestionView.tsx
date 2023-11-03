@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import Answer from "./QuestionViewComponents/Answer";
 import Icons from "./QuestionViewComponents/Icons";
 import User from "./QuestionViewComponents/User";
@@ -63,13 +63,13 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
                 />
               ))}
 
-              {/* User Details */}
               <User
                 user={user}
                 playlist={playlist}
                 description={description}
               ></User>
             </View>
+            {/* User Details */}
 
             {/* Icons */}
             <Icons user={user}></Icons>
@@ -90,9 +90,8 @@ const testingModeStyle = IN_TESTING_MODE
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: Dimensions.get("window").height, // Full screen height
     // height: "100%",
-
-    ...testingModeStyle,
   },
 
   contentView: {
@@ -108,21 +107,19 @@ const styles = StyleSheet.create({
   },
   // Content
   contentContainer: {
+    flex: 1,
     display: "flex",
-    flexDirection: "column",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
     paddingVertical: 15,
+    ...testingModeStyle,
   },
 
   // Question
   questionContainer: {
-    // height: "100%",
     // flex: 1,
-
-    alignContent: "center",
-    justifyContent: "center",
     // marginBottom: 120,
+    justifyContent: "flex-start",
+    paddingHorizontal: 15,
   },
   questionText: {
     lineHeight: 26,
@@ -137,19 +134,19 @@ const styles = StyleSheet.create({
 
   // Bottom
   bottomContainer: {
-    // height: "50%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
+    alignContent: "flex-end",
     alignItems: "flex-end",
+    // alignSelf: "flex-end",
+    // justifyContent: "flex-end",
   },
 
   optionsContainer: {
     width: "85%",
-
-    // marginBottom: 16,
-    // height: "75%",
-    // flex: 1,
+    paddingLeft: 15,
+    paddingRight: 5,
   },
 });
 

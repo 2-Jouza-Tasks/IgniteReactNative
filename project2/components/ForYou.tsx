@@ -22,9 +22,8 @@ const InfiniteScrollComponent: React.FC = () => {
 
   const loadMoreData = () => {
     setIsLoading(true);
-    getAmountOfDataV02(20)
+    getAmountOfDataV02()
       .then((newQuestions) => {
-        // console.log("newQuestions", newQuestions);
         setData([...data, ...newQuestions]);
       })
       .catch((err) => {
@@ -67,18 +66,9 @@ const InfiniteScrollComponent: React.FC = () => {
         <FlatList
           data={data}
           renderItem={({ item, index }) => (
-            <QuestionView
-              question={item}
-              index={index}
-            />
+            <QuestionView question={item} index={index} />
           )}
           keyExtractor={(item, i) => `${i}-${item.id}`}
-          // keyExtractor={(item, i) => `AAAA`}
-          // keyExtractor={(item, i) => {
-          //   console.log(`${i}-${item.id}`);
-          //   // console.log(`${index}-${item.id}`.toString());
-          //   return `${i}-${item.id}`.toString();
-          // }}
           style={styles.flatList}
           onEndReachedThreshold={0.5}
           onEndReached={loadMoreData}

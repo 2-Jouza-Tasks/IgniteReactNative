@@ -7,7 +7,7 @@ const AppTimer: React.FC = () => {
   const [duration, setDuration] = useState<number>(0);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: NodeJS.Timeout | undefined;
 
     if (isActive) {
       timer = setInterval(() => {
