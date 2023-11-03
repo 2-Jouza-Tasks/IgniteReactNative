@@ -55,7 +55,7 @@ const getAmountOfDataV02 = async (numTimes) => {
 
   try {
     const questionsRes = await Promise.all(getQuestionsPromises);
-    console.log("ALL REQUESTS COMPLETED SUCCESSFULLY");
+    // console.log("ALL REQUESTS COMPLETED SUCCESSFULLY");
     // getting the answer for each question
     const getAnswersPromises = questionsRes.map(({ id }) =>
       getQuestionAnswer(id)
@@ -73,7 +73,7 @@ const getAmountOfDataV02 = async (numTimes) => {
 
       console.log("V02 FINISHED:", finalResult.length);
 
-      console.log("Duration:", checkPerformance(startTime));
+      console.log("Duration:", checkPerformance(moment_1), " SEC");
 
       // console.log("Results:", finalResult.length);
       // console.log("Results:", finalResult);
@@ -103,33 +103,50 @@ const getAmountOfDataV01 = async (amount = 100) => {
   console.log("V01 FINISHED");
   // console.log("entireNewData", entireData);
   console.log("entireNewData", entireData.length);
+  console.log("Duration:", checkPerformance(moment_1), " SEC");
+
   return entireData;
 };
 // getAmountOfData(1);
 
-let times = 10;
-// getAmountOfDataV01(times); // 10 sec
-// times = 100;
-// times = 1000;
-
+/* 
+=========================
+*/
+// ! performance functions
 const checkPerformance = (beforeTheCall) => {
   // const currentMomentTime = performance.now();
-  // const currentMomentTime = Date.now();
-  const currentMomentTime = getCurrentTime();
+  const moment_2 = new Date();
+  // console.log("MOMENT_2=>", moment_2);
+  console.log("MOMENT_2=>", getCurrentTime(moment_2));
 
-  const result = (currentMomentTime - beforeTheCall) / 1000;
-  return result.toFixed(2);
+  // getCurrentTime();
+  const durationInSecond = (moment_2 - beforeTheCall) / 1000;
+  return durationInSecond;
+  // return result.toFixed(2);
 };
 
-const getCurrentTime = () => {
-  const newDate = new Date();
-  const result = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}    `;
+const getCurrentTime = (currentMoment) => {
+  // const newDate = new Date();
+  const result = `${currentMoment.getHours()}:${currentMoment.getMinutes()}:${currentMoment.getSeconds()}`;
   return result;
 };
 // const startTime = performance.now();
 // const startTime = Date.now();
-const startTime = getCurrentTime();
+const moment_1 = new Date();
+// console.log("MOMENT_1=>", moment_1);
+console.log("MOMENT_1=>", getCurrentTime(moment_1));
 
-console.log("startTime:", startTime);
+/* 
+=========================
+*/
 
+let times = 1
+ times = 10; // 1.14
+// times = 20; // 1.2
+// times = 40; // 1.3
+times = 50; // 1.3
+// times = 60; // 1.5
+// times = 80; // 1.44
+// times = 100; // 1.6
+// getAmountOfDataV01(times); // 10 sec
 getAmountOfDataV02(times); // 100 => 100 sec

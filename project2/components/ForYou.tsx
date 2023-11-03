@@ -20,12 +20,12 @@ const InfiniteScrollComponent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const loadMoreData = () => {
+  const loadMoreData = (amount: number = 50) => {
     setIsLoading(true);
-    getAmountOfDataV02(10)
+    getAmountOfDataV02(amount)
       .then((newQuestions) => {
-        // console.log('newQuestion')
-        setData([...data, newQuestions]);
+        // console.log("newQuestions", newQuestions);
+        setData([...data, ...newQuestions]);
       })
       .catch((err) => {
         setErrorMessage(err.message);
