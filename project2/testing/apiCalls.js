@@ -105,6 +105,6 @@ const getAmountOfDataV01 = async (amount = 100) => {
 // getAmountOfData(1);
 
 let times = 10;
-getAmountOfDataV01(times);
+// getAmountOfDataV01(times); // 10 sec
 times = 100;
-getAmountOfDataV02(times);
+getAmountOfDataV02(times); // 100 => 100 sec

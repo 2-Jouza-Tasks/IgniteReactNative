@@ -6,23 +6,26 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
-import { Question, getTheNextQuestion } from "../services/question-services";
+import {
+  QuestionWithTheCorrectAnswer,
+  getAmountOfDataV02,
+} from "../services/question-services";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 import AppTimer from "./AppTimer";
 import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const InfiniteScrollComponent: React.FC = () => {
-  const [data, setData] = useState<Question[]>([]);
+  const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const loadMoreData = () => {
     setIsLoading(true);
-    getTheNextQuestion()
-      .then((newQuestion) => {
+    getAmountOfDataV02(10)
+      .then((newQuestions) => {
         // console.log('newQuestion')
-        setData([...data, newQuestion]);
+        setData([...data, newQuestions]);
       })
       .catch((err) => {
         setErrorMessage(err.message);

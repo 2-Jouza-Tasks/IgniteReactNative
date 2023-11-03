@@ -3,12 +3,15 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import Answer from "./QuestionViewComponents/Answer";
 import Icons from "./QuestionViewComponents/Icons";
 import User from "./QuestionViewComponents/User";
-import { Question, getQuestionAnswer } from "../services/question-services";
+import {
+  QuestionWithTheCorrectAnswer,
+  getQuestionAnswer,
+} from "../services/question-services";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
 interface QuestionViewProps {
   index: number;
-  question: Question;
+  question: QuestionWithTheCorrectAnswer;
 }
 
 const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {

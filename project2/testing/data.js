@@ -391,7 +391,6 @@ const getAmountOfData = async (amount = 100) => {
   console.log("IDS", Object.keys(idForNewData));
   console.log("IDS_Count", Object.keys(idForNewData).length);
   console.log("entireNewData", entireNewData.length);
-  
 };
 // getAmountOfData(1);
 getAmountOfData(50);
