@@ -118,10 +118,11 @@ const styles = StyleSheet.create({
     zIndex: 1,
     flexDirection: "row",
     alignItems: "center",
+    alignContent: "center",
 
     width: "100%",
     justifyContent: "space-between",
-    // ...testingModeStyle,
+    ...testingModeStyle,
   },
 
   headerText: {
@@ -130,6 +131,9 @@ const styles = StyleSheet.create({
 
     borderBottomWidth: 5,
     borderColor: "white",
+    alignSelf: "center",
+    justifyContent: "center",
+    marginRight: 30,
   },
   flatList: {
     flex: 1,

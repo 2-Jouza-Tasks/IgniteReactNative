@@ -1,11 +1,15 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-const TemplateScreen: FC<{}> = (props) => {
+interface Props {
+  title: string;
+  icon: string;
+}
+const TemplateScreen: FC<Props> = ({ title, icon }) => {
   return (
     <View style={styles.container}>
       <Text>
-        {props.title} - {props.icon}
+        {title} - {icon}
       </Text>
     </View>
   );

@@ -17,26 +17,19 @@ const App = () => {
     { title: "Profile", icon: "user" },
   ];
 
+  const createTabIcon = (focused: boolean, icon: string) => (
+    <FA5 name={icon} color={focused ? "white" : "gray"} size={30} />
+  );
+
   return (
     <View style={styles.container}>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === "Home") {
-                iconName = focused
-                  ? "ios-information-circle"
-                  : "ios-information-circle-outline";
-              } else if (route.name === "Settings") {
-                iconName = focused ? "ios-list" : "ios-list-outline";
-              }
-
-              // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: "tomato",
+            headerShown: false,
+            tabBarActiveBackgroundColor: "black",
+            tabBarInactiveBackgroundColor: "black",
+            tabBarActiveTintColor: "white",
             tabBarInactiveTintColor: "gray",
           })}
         >
@@ -44,8 +37,7 @@ const App = () => {
             name="Home"
             component={ForYou}
             options={{
-              tabBarIcon: () => <FA5 name="home" color={"red"} size={30} />,
-              headerShown: false,
+              tabBarIcon: ({ focused }) => createTabIcon(focused, "home"),
             }}
           />
 
@@ -54,10 +46,7 @@ const App = () => {
               name={title}
               key={`${index}.${title}`}
               options={{
-                tabBarIcon: () => <FA5 name={icon} color={"red"} size={30} />,
-                headerShown: false,
-                tabBarActiveBackgroundColor: "black",
-                tabBarActiveTintColor: "black",
+                tabBarIcon: ({ focused }) => createTabIcon(focused, icon),
               }}
             >
               {() => (
