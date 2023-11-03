@@ -8,7 +8,7 @@ import {
   getQuestionAnswer,
 } from "../../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
-import TimeTrackingApp from "../../components/QuestionViewComponents/TimeTracking";
+import TimeTrackingApp from "./TimeTracking";
 import { IN_TESTING_MODE } from "../../services/TestingModeVariables";
 
 interface QuestionViewProps {

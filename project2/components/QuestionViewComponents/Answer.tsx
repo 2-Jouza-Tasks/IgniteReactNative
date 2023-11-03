@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { StyleSheet, Pressable, Text, View } from "react-native";
 import { Option } from "../../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
 import * as Animatable from "react-native-animatable";
@@ -21,11 +21,10 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
     styleStatus;
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={() => {
         onPress(id);
       }}
-      key={id}
       style={[
         styles.option,
         didTheUserPressed && itIsTheCorrectAnswer && styles.correct,
@@ -52,7 +51,7 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
           )}
         </Animatable.View>
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
   option: {
     // width: "100%",
     // padding: 8,
-
     marginBottom: 8,
     borderRadius: 10,
     backgroundColor: "rgba(255,255,255, 0.5)",
@@ -90,10 +88,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: "500",
     color: "white",
-
-    textShadowColor: "black",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 1,
+    textShadow: `2px 2px 1px black`,
     paddingVertical: 4,
     width: "90%",
   },

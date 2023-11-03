@@ -34,7 +34,11 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentView}>
-        <Image source={{ uri: image }} style={styles.backgroundImage} />
+        <Image
+          resizeMode="cover"
+          source={{ uri: image }}
+          style={styles.backgroundImage}
+        />
 
         {/* Stat of Content Container */}
         <View style={styles.contentContainer}>
@@ -103,7 +107,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    resizeMode: "cover",
   },
   // Content
   contentContainer: {
