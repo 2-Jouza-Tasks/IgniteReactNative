@@ -3,10 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import Answer from "./QuestionViewComponents/Answer";
 import Icons from "./QuestionViewComponents/Icons";
 import User from "./QuestionViewComponents/User";
-import {
-  QuestionWithTheCorrectAnswer,
-  getQuestionAnswer,
-} from "../services/question-services";
+import { QuestionWithTheCorrectAnswer } from "../services/question-services";
 import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 
 interface QuestionViewProps {
@@ -15,29 +12,19 @@ interface QuestionViewProps {
 }
 
 const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
-  const { id, question, options, user, playlist, description, image } = Q;
+  const {
+    id,
+    question,
+    options,
+    user,
+    playlist,
+    description,
+    image,
+    correct_option_id,
+  } = Q;
 
-  const [correctOption, setCorrectOption] = useState<string>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userPressed, setUserPressed] = useState<boolean>(false);
   const [userAnswer, setUserAnswer] = useState<string>("");
-
-  const [errorMessage, setErrorMessage] = useState<string>("");
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    getQuestionAnswer(id)
-      .then((answer) => {
-        setCorrectOption(answer.correct_options[0].id);
-      })
-      .catch((err) => {
-        setErrorMessage(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
 
   const handlePress = (optionId: string) => {
     setUserPressed(true);
@@ -46,57 +33,50 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
 
   return (
     <View style={styles.container}>
-      {errorMessage ? (
-        <Text>{errorMessage}</Text>
-      ) : (
-        <View style={styles.contentView}>
-          <Image source={{ uri: image }} style={styles.backgroundImage} />
+      <View style={styles.contentView}>
+        <Image source={{ uri: image }} style={styles.backgroundImage} />
 
-          <View style={styles.contentContainer}>
-            {/* Question */}
-            <View style={styles.questionContainer}>
-              <Text style={styles.questionText}>
-                {IN_TESTING_MODE && `${id} - ${index + 1}. `}
+        {/* Stat of Content Container */}
+        <View style={styles.contentContainer}>
+          {/* Question */}
+          <View style={styles.questionContainer}>
+            <Text style={styles.questionText}>
+              {IN_TESTING_MODE && `${index}.${id}-`}
 
-                {question}
-              </Text>
+              {question}
+            </Text>
+          </View>
+
+          {/* Bottom (Option & User) */}
+          <View style={styles.bottomContainer}>
+            <View style={styles.optionsContainer}>
+              {options.map((option, index) => (
+                <Answer
+                  onPress={handlePress}
+                  key={`${index}.${id}`}
+                  option={option}
+                  styleStatus={{
+                    didTheUserPressed: userPressed,
+                    itIsTheCorrectAnswer: option.id == correct_option_id,
+                    itIsWhatTheUserSelected: option.id == userAnswer,
+                  }}
+                />
+              ))}
+
+              {/* User Details */}
+              <User
+                user={user}
+                playlist={playlist}
+                description={description}
+              ></User>
             </View>
 
-            {/* Bottom (Option & User) */}
-            <View style={styles.bottomContainer}>
-              {isLoading ? (
-                <Text>Loading ...</Text>
-              ) : (
-                <View style={styles.optionsContainer}>
-                  {options.map((option) => (
-                    <Answer
-                      onPress={handlePress}
-                      key={option.id}
-                      option={option}
-                      styleStatus={{
-                        didTheUserPressed: userPressed,
-                        // try to move it to handle press function
-                        itIsTheCorrectAnswer: option.id == correctOption,
-                        itIsWhatTheUserSelected: option.id == userAnswer,
-                      }}
-                    />
-                  ))}
-
-                  {/* User Details */}
-                  <User
-                    user={user}
-                    playlist={playlist}
-                    description={description}
-                  ></User>
-                </View>
-              )}
-
-              {/* Icons */}
-              <Icons user={user}></Icons>
-            </View>
+            {/* Icons */}
+            <Icons user={user}></Icons>
           </View>
         </View>
-      )}
+        {/* End of Content Container */}
+      </View>
     </View>
   );
 };

@@ -27,10 +27,10 @@ const App = () => {
             tabBarIcon: () => <FA5 name="home" color={"gray"} size={30} />,
           }}
         />
-        {staticScreens.map(({ title, icon }) => (
+        {staticScreens.map(({ title, icon }, index) => (
           <Tab.Screen
             name={title}
-            key={title}
+            key={`index.title`}
             options={{
               tabBarIcon: () => <FA5 name={icon} color={"gray"} size={30} />,
             }}

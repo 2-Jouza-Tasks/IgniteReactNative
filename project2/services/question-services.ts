@@ -50,7 +50,7 @@ export const getQuestionAnswer = async (
 
 // <QuestionWithTheCorrectAnswer>
 export const getAmountOfDataV02 = async (
-  numTimes: number
+  numTimes: number = 10
 ): Promise<QuestionWithTheCorrectAnswer[]> => {
   const getQuestionsPromises = [];
   for (let i = 0; i < numTimes; i++) {

@@ -29,7 +29,6 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
       style={[
         styles.option,
         didTheUserPressed && itIsTheCorrectAnswer && styles.correct,
-
         itIsWhatTheUserSelected && !itIsTheCorrectAnswer && styles.wrong,
       ]}
     >

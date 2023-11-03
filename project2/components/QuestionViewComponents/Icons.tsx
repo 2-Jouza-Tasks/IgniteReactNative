@@ -7,7 +7,7 @@ interface Props {
   user: User;
 }
 
-const Testing: FC<Props> = ({ user }) => {
+const Icons: FC<Props> = ({ user }) => {
   const staticIcons = [
     { title: "heart", count: 87 },
     { title: "commenting", count: 2 },
@@ -28,9 +28,14 @@ const Testing: FC<Props> = ({ user }) => {
         ></Icon>
       </View>
 
-      {staticIcons.map(({ title, count }) => (
+      {staticIcons.map(({ title, count }, index) => (
         <View style={styles.iconView}>
-          <Icon key={title} name={title} size={30} color="white" />
+          <Icon
+            key={`${index}.${title}`}
+            name={title}
+            size={30}
+            color="white"
+          />
 
           <Text style={styles.iconText}>{count}</Text>
         </View>
@@ -39,7 +44,7 @@ const Testing: FC<Props> = ({ user }) => {
   );
 };
 
-export default Testing;
+export default Icons;
 
 const styles = StyleSheet.create({
   iconContainer: {

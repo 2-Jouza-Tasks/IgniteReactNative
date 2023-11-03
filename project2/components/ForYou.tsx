@@ -20,15 +20,16 @@ const InfiniteScrollComponent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const loadMoreData = (amount: number = 50) => {
+  const loadMoreData = () => {
     setIsLoading(true);
-    getAmountOfDataV02(amount)
+    getAmountOfDataV02(20)
       .then((newQuestions) => {
         // console.log("newQuestions", newQuestions);
         setData([...data, ...newQuestions]);
       })
       .catch((err) => {
         setErrorMessage(err.message);
+        throw Error(err.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -66,14 +67,24 @@ const InfiniteScrollComponent: React.FC = () => {
         <FlatList
           data={data}
           renderItem={({ item, index }) => (
-            <QuestionView question={item} index={index} />
+            <QuestionView
+              question={item}
+              index={index}
+            />
           )}
-          // keyExtractor={(item, index) => item.id.toString()}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, i) => `${i}-${item.id}`}
+          // keyExtractor={(item, i) => `AAAA`}
+          // keyExtractor={(item, i) => {
+          //   console.log(`${i}-${item.id}`);
+          //   // console.log(`${index}-${item.id}`.toString());
+          //   return `${i}-${item.id}`.toString();
+          // }}
           style={styles.flatList}
-          onEndReachedThreshold={20}
+          onEndReachedThreshold={0.5}
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
         />
       )}
     </View>
