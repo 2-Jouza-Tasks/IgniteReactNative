@@ -72,6 +72,9 @@ const getAmountOfDataV02 = async (numTimes) => {
       });
 
       console.log("V02 FINISHED:", finalResult.length);
+
+      console.log("Duration:", checkPerformance(startTime));
+
       // console.log("Results:", finalResult.length);
       // console.log("Results:", finalResult);
 
@@ -106,5 +109,27 @@ const getAmountOfDataV01 = async (amount = 100) => {
 
 let times = 10;
 // getAmountOfDataV01(times); // 10 sec
-times = 100;
+// times = 100;
+// times = 1000;
+
+const checkPerformance = (beforeTheCall) => {
+  // const currentMomentTime = performance.now();
+  // const currentMomentTime = Date.now();
+  const currentMomentTime = getCurrentTime();
+
+  const result = (currentMomentTime - beforeTheCall) / 1000;
+  return result.toFixed(2);
+};
+
+const getCurrentTime = () => {
+  const newDate = new Date();
+  const result = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}    `;
+  return result;
+};
+// const startTime = performance.now();
+// const startTime = Date.now();
+const startTime = getCurrentTime();
+
+console.log("startTime:", startTime);
+
 getAmountOfDataV02(times); // 100 => 100 sec
