@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import QuestionView from "./QuestionView2";
-import { getTheNextQuestion, Question } from "../services/question-services";
+import { getTheNextQuestion, Question } from "../../services/question-services";
 
 interface Props {
   // str: string;

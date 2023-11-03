@@ -68,9 +68,9 @@ const InfiniteScrollComponent: React.FC = () => {
           // keyExtractor={(item, index) => item.id.toString()}
           keyExtractor={(item, index) => index.toString()}
           style={styles.flatList}
-          onEndReachedThreshold={5}
+          onEndReachedThreshold={20}
           onEndReached={loadMoreData}
-          ListFooterComponent={renderLoading()}
+          ListFooterComponent={renderLoading}
         />
       )}
     </View>

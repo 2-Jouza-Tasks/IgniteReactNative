@@ -38,6 +38,12 @@ const for_you = {
     name: "AP US History",
     avatar: "https://cross-platform-rwa.rp.devfactory.com/avatars/apush.png",
   },
+  correct_options: [
+    {
+      id: "A",
+      answer: "They wanted to stop the spread of slavery, not end it entirely",
+    },
+  ],
 };
 
 // https://cross-platform.rp.devfactory.com/reveal?id=5059
