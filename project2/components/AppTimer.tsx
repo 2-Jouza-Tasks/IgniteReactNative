@@ -31,9 +31,6 @@ const AppTimer: React.FC = () => {
       <FA5 name="stopwatch" size={24} color="white" />
 
       <Text style={styles.timerText}>
-        {/* hours */}
-        {/* {formatTime(Math.floor(duration / 3600))}: */}
-        {/* Minutes: Seconds */}
         {formatTime(Math.floor((duration % 3600) / 60))}:
         {formatTime(duration % 60)}
       </Text>

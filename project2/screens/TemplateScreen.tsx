@@ -5,6 +5,7 @@ interface Props {
   title: string;
   icon: string;
 }
+
 const TemplateScreen: FC<Props> = ({ title, icon }) => {
   return (
     <View style={styles.container}>
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "green",
-    borderWidth: 2,
+    // borderColor: "green",
+    // borderWidth: 2,
   },
 });

@@ -46,7 +46,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         {/* Question */}
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>
-            {IN_TESTING_MODE && `${index}.${id}- \n`}
+            {IN_TESTING_MODE && `${index + 1}.${id}- \n`}
 
             {question}
           </Text>
@@ -108,7 +108,7 @@ const testingModeStyle2 = IN_TESTING_MODE
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 50),
+    height: Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 49),
   },
 
   backgroundImage: {
@@ -124,18 +124,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 15,
     paddingHorizontal: 15,
-
     ...testingModeStyle,
   },
 
   // Question
   questionContainer: {
-    // flex: 1,
-    // marginBottom: 120,
-    // justifyContent: "flex-start",
     justifyContent: "center",
-    // alignItems: "center",
-    // paddingVertical: 50,
     flexGrow: 3,
     ...testingModeStyle2,
     width: "95%",
@@ -154,11 +148,8 @@ const styles = StyleSheet.create({
   // Bottom
   bottomContainer: {
     flexDirection: "row",
-    // justifyContent: "space-between",
     alignContent: "flex-end",
     alignItems: "flex-end",
-    // alignSelf: "flex-end",
-    // justifyContent: "flex-end",
     flexGrow: 1,
   },
 
@@ -186,11 +177,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 14,
     fontWeight: "500",
-    // justifyContent: "flex-start",
-    // alignSelf: "flex-start",
     alignItems: "flex-start",
-
-    // flexGrow: 5,
   },
 });
 

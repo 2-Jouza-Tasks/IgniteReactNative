@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
 import {
   QuestionWithTheCorrectAnswer,
   getAmountOfDataV02,
@@ -15,6 +8,7 @@ import { IN_TESTING_MODE } from "../services/TestingModeVariables";
 import AppTimer from "./AppTimer";
 import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Loader from "./LoadingSpinner";
 
 const InfiniteScrollComponent: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
@@ -23,7 +17,7 @@ const InfiniteScrollComponent: React.FC = () => {
 
   const loadMoreData = () => {
     setIsLoading(true);
-    getAmountOfDataV02()
+    getAmountOfDataV02(20)
       .then((newQuestions) => {
         setData([...data, ...newQuestions]);
       })
@@ -41,11 +35,12 @@ const InfiniteScrollComponent: React.FC = () => {
   }, []);
 
   const renderLoading = () => {
-    return isLoading ? <ActivityIndicator size="large" color="blue" /> : null;
+    return isLoading ? <Loader /> : null;
   };
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <AppTimer />
 
@@ -60,7 +55,8 @@ const InfiniteScrollComponent: React.FC = () => {
         <Icon name="search" size={24} color="white" />
       </View>
 
-      {/* <View>HERE</View> */}
+      {isLoading && <Loader />}
+
       {errorMessage ? (
         <Text>{errorMessage}</Text>
       ) : (
@@ -72,7 +68,7 @@ const InfiniteScrollComponent: React.FC = () => {
           keyExtractor={(item, i) => `${i}-${item.id}`}
           style={styles.flatList}
           // Rendering Data
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={20}
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading}
           initialNumToRender={10}
@@ -80,10 +76,10 @@ const InfiniteScrollComponent: React.FC = () => {
           // View
           showsVerticalScrollIndicator={false}
           snapToInterval={
-            Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 50)
+            Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 49)
           }
           snapToAlignment="start"
-          decelerationRate="normal"
+          decelerationRate="fast"
         />
       )}
     </View>
@@ -119,7 +115,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignContent: "center",
-
     width: "100%",
     justifyContent: "space-between",
     ...testingModeStyle,
@@ -137,7 +132,6 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
-    // backgroundColor: "lightgray",
     ...testingModeStyle2,
   },
 });

@@ -85,11 +85,12 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 21,
     fontWeight: "500",
-    color: "white",
-    // textShadow: `5px 5px 2px black`,
+    width: "85%",
+    color: "black",
     paddingVertical: 4,
 
-    width: "85%",
+    // textShadowColor: "black",
+    // textShadowOffset: { width: 2, height: 1 },
   },
   icon: {},
 });
