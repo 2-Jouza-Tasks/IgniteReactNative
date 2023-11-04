@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
-import Answer from "./QuestionViewComponents/Answer";
+import Options from "./QuestionViewComponents/Options";
 import Icons from "./QuestionViewComponents/Icons";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import User from "./QuestionViewComponents/User";
 import { QuestionWithTheCorrectAnswer } from "../services/question-services";
-import { IN_TESTING_MODE } from "../services/TestingModeVariables";
+import { IN_TESTING_MODE } from "../testing/TestingModeVariables";
 
 interface QuestionViewProps {
   index: number;
@@ -56,7 +56,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         <View style={styles.bottomContainer}>
           <View style={styles.optionsContainer}>
             {options.map((option, index) => (
-              <Answer
+              <Options
                 onPress={handlePress}
                 key={`${index}.${id}`}
                 option={option}
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     alignItems: "flex-start",
   },
-});
+} as const);
 
 export default QuestionView;

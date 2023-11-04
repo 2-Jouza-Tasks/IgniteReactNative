@@ -4,13 +4,13 @@ import {
   QuestionWithTheCorrectAnswer,
   getAmountOfDataV02,
 } from "../services/question-services";
-import { IN_TESTING_MODE } from "../services/TestingModeVariables";
-import AppTimer from "./AppTimer";
+import { IN_TESTING_MODE } from "../testing/TestingModeVariables";
+import AppTimer from "./supported/AppTimer";
 import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Loader from "./LoadingSpinner";
+import Loader from "./supported/LoadingSpinner";
 
-const InfiniteScrollComponent: React.FC = () => {
+const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -23,7 +23,6 @@ const InfiniteScrollComponent: React.FC = () => {
       })
       .catch((err) => {
         setErrorMessage(err.message);
-        throw Error(err.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -71,8 +70,8 @@ const InfiniteScrollComponent: React.FC = () => {
           onEndReachedThreshold={20}
           onEndReached={loadMoreData}
           ListFooterComponent={renderLoading}
-          initialNumToRender={10}
-          maxToRenderPerBatch={10}
+          // initialNumToRender={10}
+          // maxToRenderPerBatch={10}
           // View
           showsVerticalScrollIndicator={false}
           snapToInterval={
@@ -134,6 +133,6 @@ const styles = StyleSheet.create({
     flex: 1,
     ...testingModeStyle2,
   },
-});
+} as const);
 
-export default InfiniteScrollComponent;
+export default ForYou;

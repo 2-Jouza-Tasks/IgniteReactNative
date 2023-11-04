@@ -3,19 +3,20 @@ import { StyleSheet, Pressable, Text, View } from "react-native";
 import { Option } from "../../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
 import * as Animatable from "react-native-animatable";
-import { IN_TESTING_MODE } from "../../services/TestingModeVariables";
+import { IN_TESTING_MODE } from "../../testing/TestingModeVariables";
 
+interface StyleStatus {
+  didTheUserPressed: boolean;
+  itIsTheCorrectAnswer: boolean;
+  itIsWhatTheUserSelected: boolean;
+}
 interface Props {
   option: Option;
   onPress: (id: string) => void;
-  styleStatus: {
-    didTheUserPressed: boolean;
-    itIsTheCorrectAnswer: boolean;
-    itIsWhatTheUserSelected: boolean;
-  };
+  styleStatus: StyleStatus;
 }
 
-const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
+const Options: FC<Props> = ({ option, onPress, styleStatus }) => {
   const { id, answer } = option;
   const { didTheUserPressed, itIsTheCorrectAnswer, itIsWhatTheUserSelected } =
     styleStatus;
@@ -56,7 +57,7 @@ const Answer: FC<Props> = ({ option, onPress, styleStatus }) => {
   );
 };
 
-export default Answer;
+export default Options;
 
 const styles = StyleSheet.create({
   option: {
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
     // textShadowOffset: { width: 2, height: 1 },
   },
   icon: {},
-});
+} as const);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Answer from "../../components/QuestionViewComponents/Answer";
+import Options from "../../components/QuestionViewComponents/Options";
 import Icons from "../../components/QuestionViewComponents/Icons";
 import User from "../../components/QuestionViewComponents/User";
 import {
@@ -9,7 +9,7 @@ import {
 } from "../../services/question-services";
 import Icon from "react-native-vector-icons/FontAwesome";
 import TimeTrackingApp from "./TimeTracking";
-import { IN_TESTING_MODE } from "../../services/TestingModeVariables";
+import { IN_TESTING_MODE } from "../TestingModeVariables";
 
 interface QuestionViewProps {
   index: number;

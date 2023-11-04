@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
-});
+}as const);
 
 export default AppTimer;

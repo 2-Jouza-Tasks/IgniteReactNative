@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     zIndex: 1,
   },
-});
+}as const);
 
 export default Loader;
