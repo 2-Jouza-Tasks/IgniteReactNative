@@ -5,21 +5,22 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import * as Animatable from "react-native-animatable";
 import { IN_TESTING_MODE } from "../../testing/TestingModeVariables";
 
-interface StyleStatus {
+interface Props {
+  option: Option;
+  onPress: (id: string) => void;
   didTheUserPressed: boolean;
   itIsTheCorrectAnswer: boolean;
   itIsWhatTheUserSelected: boolean;
 }
-interface Props {
-  option: Option;
-  onPress: (id: string) => void;
-  styleStatus: StyleStatus;
-}
 
-const Options: FC<Props> = ({ option, onPress, styleStatus }) => {
+const Options: FC<Props> = ({
+  option,
+  onPress,
+  didTheUserPressed,
+  itIsTheCorrectAnswer,
+  itIsWhatTheUserSelected,
+}) => {
   const { id, answer } = option;
-  const { didTheUserPressed, itIsTheCorrectAnswer, itIsWhatTheUserSelected } =
-    styleStatus;
 
   return (
     <Pressable
@@ -31,6 +32,7 @@ const Options: FC<Props> = ({ option, onPress, styleStatus }) => {
         didTheUserPressed && itIsTheCorrectAnswer && styles.correct,
         itIsWhatTheUserSelected && !itIsTheCorrectAnswer && styles.wrong,
       ]}
+      android_ripple={{ color: "rgba(0, 0, 0, 0.3)" }}
     >
       <Text id={id} style={styles.optionText}>
         {IN_TESTING_MODE && id + ". "}
@@ -74,12 +76,10 @@ const styles = StyleSheet.create({
   },
   correct: {
     backgroundColor: "rgba(40, 177, 143, 0.7)",
-    borderColor: "rgba(40, 177, 143, 0.7)",
   },
 
   wrong: {
     backgroundColor: "rgba(220, 95, 95, 0.7)",
-    borderColor: "rgba(220, 95, 95, 0.7)",
   },
 
   optionText: {

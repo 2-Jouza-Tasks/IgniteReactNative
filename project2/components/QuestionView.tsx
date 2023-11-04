@@ -13,6 +13,8 @@ interface QuestionViewProps {
   question: QuestionWithTheCorrectAnswer;
 }
 
+const MemoizedItemComponent = React.memo(Options);
+
 const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
   const {
     id,
@@ -56,15 +58,13 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         <View style={styles.bottomContainer}>
           <View style={styles.optionsContainer}>
             {options.map((option, index) => (
-              <Options
+              <MemoizedItemComponent
                 onPress={handlePress}
-                key={`${index}.${id}`}
+                key={`${index}.${option.id}`}
                 option={option}
-                styleStatus={{
-                  didTheUserPressed: userPressed,
-                  itIsTheCorrectAnswer: option.id == correct_option_id,
-                  itIsWhatTheUserSelected: option.id == userAnswer,
-                }}
+                didTheUserPressed={userPressed}
+                itIsWhatTheUserSelected={userAnswer == option.id}
+                itIsTheCorrectAnswer={correct_option_id == option.id}
               />
             ))}
 

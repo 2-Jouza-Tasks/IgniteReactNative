@@ -1,23 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator,
+} from "react-native";
 import {
   QuestionWithTheCorrectAnswer,
   getAmountOfDataV02,
 } from "../services/question-services";
-import { IN_TESTING_MODE } from "../testing/TestingModeVariables";
+import { IN_TESTING_MODE, LESS_DATA } from "../testing/TestingModeVariables";
 import AppTimer from "./supported/AppTimer";
 import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "./supported/LoadingSpinner";
 
+interface MemoProps {
+  question: QuestionWithTheCorrectAnswer;
+  index: string;
+}
+
+const MemoizedItemComponent = React.memo(QuestionView);
+// const MemoizedItemComponent = React.memo<MemoProps>(
+//   ({ question, index }):<QuestionView> => {
+//     console.log("question  rendered");
+//     return <QuestionView/>
+//     );
+//   },
+//   (prevProps, nextProps) => {
+//     if (prevProps.userDetails.name === nextProps.userDetails.name) {
+//       return true; // props are equal
+//     }
+//     return false; // props are not equal -> update the component
+//   }
+// );
+
 const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  const amountOfDataToGet = LESS_DATA ? 5 : 20;
   const loadMoreData = () => {
     setIsLoading(true);
-    getAmountOfDataV02(20)
+
+    getAmountOfDataV02(amountOfDataToGet)
       .then((newQuestions) => {
         setData([...data, ...newQuestions]);
       })
@@ -34,13 +62,18 @@ const ForYou: React.FC = () => {
   }, []);
 
   const renderLoading = () => {
-    return isLoading ? <Loader /> : null;
+    return isLoading ? <ActivityIndicator size="large" color="blue" /> : null;
   };
 
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
+      <View
+        style={[
+          data.length == 0 && isLoading && styles.blackBackground,
+          styles.header,
+        ]}
+      >
         <AppTimer />
 
         {IN_TESTING_MODE && (
@@ -54,7 +87,7 @@ const ForYou: React.FC = () => {
         <Icon name="search" size={24} color="white" />
       </View>
 
-      {isLoading && <Loader />}
+      {data.length == 0 && isLoading && <Loader />}
 
       {errorMessage ? (
         <Text>{errorMessage}</Text>
@@ -62,23 +95,22 @@ const ForYou: React.FC = () => {
         <FlatList
           data={data}
           renderItem={({ item, index }) => (
-            <QuestionView question={item} index={index} />
+            <MemoizedItemComponent question={item} index={index} />
           )}
           keyExtractor={(item, i) => `${i}-${item.id}`}
-          style={styles.flatList}
           // Rendering Data
-          onEndReachedThreshold={20}
+          onEndReachedThreshold={amountOfDataToGet}
           onEndReached={loadMoreData}
-          ListFooterComponent={renderLoading}
-          // initialNumToRender={10}
-          // maxToRenderPerBatch={10}
           // View
           showsVerticalScrollIndicator={false}
+          ListFooterComponent={renderLoading}
+          // Scroll
+          snapToAlignment="end"
+          decelerationRate="fast"
+          disableIntervalMomentum={true}
           snapToInterval={
             Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 49)
           }
-          snapToAlignment="start"
-          decelerationRate="fast"
         />
       )}
     </View>
@@ -118,7 +150,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     ...testingModeStyle,
   },
-
+  blackBackground: {
+    backgroundColor: "black",
+  },
   headerText: {
     color: "white",
     fontWeight: "bold",
@@ -128,10 +162,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     marginRight: 30,
-  },
-  flatList: {
-    flex: 1,
-    ...testingModeStyle2,
   },
 } as const);
 
