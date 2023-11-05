@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, memo } from "react";
 import {
   View,
   Text,
-  Pressable,
   FlatList,
   StyleSheet,
   Dimensions,
@@ -12,46 +11,34 @@ import {
   QuestionWithTheCorrectAnswer,
   getAmountOfDataV02,
 } from "../services/question-services";
-import { IN_TESTING_MODE, LESS_DATA } from "../testing/TestingModeVariables";
+import {
+  IN_TESTING_MODE,
+  LESS_DATA,
+  TESTING_MODE_STYLE,
+} from "../testing/TestingModeVariables";
 import AppTimer from "./supported/AppTimer";
 import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "./supported/LoadingSpinner";
 
-interface MemoProps {
-  question: QuestionWithTheCorrectAnswer;
-  index: string;
-}
-const MemoizedItemComponent = React.memo(QuestionView);
-// const MemoizedItemComponent = React.memo<MemoProps>(
-//   ({ question, index }):<QuestionView> => {
-//     console.log("question  rendered");
-//     return <QuestionView/>
-//     );
-//   },
-//   (prevProps, nextProps) => {
-//     if (prevProps.userDetails.name === nextProps.userDetails.name) {
-//       return true; // props are equal
-//     }
-//     return false; // props are not equal -> update the component
-//   }
-// );
+const MemoQuestionView = memo(QuestionView);
 
-const AMOUNT_OF_DATA_TO_GET = LESS_DATA ? 2 : 20;
+const AMOUNT_OF_DATA_TO_GET = !LESS_DATA ? 5 : 20;
 
 const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const flatListRef = useRef(FlatList);
-
   const loadMoreData = () => {
+    console.log(AMOUNT_OF_DATA_TO_GET, "AA", data.length);
     setIsLoading(true);
 
     getAmountOfDataV02(AMOUNT_OF_DATA_TO_GET)
+      // getAmountOfDataV02(2)
       .then((newQuestions) => {
         setData([...data, ...newQuestions]);
+        console.log("BB", data.length + newQuestions.length);
       })
       .catch((err) => {
         setErrorMessage(err.message);
@@ -82,16 +69,14 @@ const ForYou: React.FC = () => {
 
         {IN_TESTING_MODE && (
           <View>
-            <Text style={styles.headerText}>
-              {data.length} - {isLoading && "Loading..."}
-              {/* {console.log("DATA: ", data.map((e) => e.id).join("|"))} */}
-            </Text>
             <Text
+              style={styles.headerText}
               onPress={() => {
                 loadMoreData();
               }}
             >
-              END
+              {data.length} - {isLoading && "Loading..."}
+              {/* {console.log("DATA: ", data.map((e) => e.id).join("|"))} */}
             </Text>
           </View>
         )}
@@ -110,10 +95,11 @@ const ForYou: React.FC = () => {
           // Rendering Data
           keyExtractor={(item, i) => `${i}-${item.id}`}
           renderItem={({ item, index }) => (
-            <MemoizedItemComponent question={item} index={index} />
+            <MemoQuestionView question={item} questionIndex={index} />
           )}
-          // onEndReachedThreshold={AMOUNT_OF_DATA_TO_GET * 0.8}
-          onEndReachedThreshold={data.length}
+          onEndReachedThreshold={5}
+          // onEndReachedThreshold={data.length}
+          // onEndReachedThreshold={20}
           onEndReached={loadMoreData}
           // View
           showsVerticalScrollIndicator={false}
@@ -122,26 +108,27 @@ const ForYou: React.FC = () => {
           snapToAlignment="end"
           decelerationRate="fast"
           disableIntervalMomentum={true}
-          snapToInterval={
-            Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 49)
-          }
+          snapToInterval={Dimensions.get("window").height - 49}
         />
       )}
     </View>
   );
 };
 
-const testingModeStyle = IN_TESTING_MODE
+const testingModeStyle = TESTING_MODE_STYLE
   ? {
       borderWidth: 4,
       borderColor: "blue",
     }
   : {};
 
-const testingModeStyle2 = IN_TESTING_MODE
+const testingModeStyle2 = TESTING_MODE_STYLE
   ? {
       borderWidth: 3,
       borderColor: "green",
+      marginTop: 665,
+      // top: "none",
+      // bottom: 25,
     }
   : {};
 
@@ -155,14 +142,14 @@ const styles = StyleSheet.create({
     // backgroundColor: "none",
     paddingVertical: 5,
     position: "absolute",
-    top: 20,
     zIndex: 1,
     flexDirection: "row",
     alignItems: "center",
     alignContent: "center",
     width: "100%",
     justifyContent: "space-between",
-    ...testingModeStyle,
+    top: 20,
+    ...testingModeStyle2,
   },
   blackBackground: {
     backgroundColor: "black",

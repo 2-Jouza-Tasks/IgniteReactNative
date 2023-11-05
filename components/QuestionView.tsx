@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import Options from "./QuestionViewComponents/Options";
 import Icons from "./QuestionViewComponents/Icons";
@@ -6,16 +6,22 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import User from "./QuestionViewComponents/User";
 import { QuestionWithTheCorrectAnswer } from "../services/question-services";
-import { IN_TESTING_MODE } from "../testing/TestingModeVariables";
+import {
+  IN_TESTING_MODE,
+  TESTING_MODE_STYLE,
+} from "../testing/TestingModeVariables";
 
 interface QuestionViewProps {
-  index: number;
+  questionIndex: number;
   question: QuestionWithTheCorrectAnswer;
 }
 
-const MemoizedItemComponent = React.memo(Options);
+const MemoOptions = memo(Options);
 
-const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
+const QuestionView: React.FC<QuestionViewProps> = ({
+  question: Q,
+  questionIndex,
+}) => {
   const {
     id,
     question,
@@ -37,7 +43,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
 
   // FOR TESTING ONLY
   useEffect(() => {
-    // console.log("RE-RENDER QUESTION:", index + 1, id);
+    console.log("RE-RENDER QUESTION:", questionIndex + 1, id);
   }, []);
 
   return (
@@ -53,8 +59,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         {/* Question */}
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>
-            {IN_TESTING_MODE && `${index + 1}.${id}- \n`}
-
+            {IN_TESTING_MODE && `${questionIndex + 1}.${id}- \n`}
             {question}
           </Text>
         </View>
@@ -62,10 +67,15 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
         {/* Bottom (Option & User) */}
         <View style={styles.bottomContainer}>
           <View style={styles.optionsContainer}>
-            {options.map((option, index) => (
-              <MemoizedItemComponent
+            {options.map((option, optionIndex) => (
+              <MemoOptions
                 onPress={handlePress}
-                key={`${index}.${option.id}`}
+                key={`${questionIndex + 1}.${id}|${optionIndex + 1}.${
+                  option.id
+                }`}
+                copyOfKeyValue={`${questionIndex + 1}.${id}|${
+                  optionIndex + 1
+                }.${option.id}`}
                 option={option}
                 didTheUserPressed={userPressed}
                 itIsWhatTheUserSelected={userAnswer == option.id}
@@ -96,14 +106,14 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
     </View>
   );
 };
-const testingModeStyle = IN_TESTING_MODE
+const testingModeStyle = TESTING_MODE_STYLE
   ? {
       borderColor: "red",
       borderWidth: 2,
     }
   : {};
 
-const testingModeStyle2 = IN_TESTING_MODE
+const testingModeStyle2 = TESTING_MODE_STYLE
   ? {
       borderColor: "yellow",
       borderWidth: 2,
@@ -113,7 +123,7 @@ const testingModeStyle2 = IN_TESTING_MODE
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: Dimensions.get("window").height - (IN_TESTING_MODE ? 60 : 49),
+    height: Dimensions.get("window").height - 49,
   },
 
   backgroundImage: {
