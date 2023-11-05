@@ -6,7 +6,7 @@ import * as Animatable from "react-native-animatable";
 import { IN_TESTING_MODE } from "../../testing/TestingModeVariables";
 
 interface Props {
-  copyOfKeyValue: string;
+  optionKeyValue: string;
   option: Option;
   onPress: (id: string) => void;
   didTheUserPressed: boolean;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Options: FC<Props> = ({
-  copyOfKeyValue,
+  optionKeyValue,
   option,
   onPress,
   didTheUserPressed,
@@ -26,7 +26,7 @@ const Options: FC<Props> = ({
 
   // FOR TESTING ONLY
   useEffect(() => {
-    // console.log("RE-RENDER    OPTION:", copyOfKeyValue);
+    console.log("RE-RENDER    OPTION:", optionKeyValue);
   }, []);
 
   return (
@@ -42,7 +42,7 @@ const Options: FC<Props> = ({
       android_ripple={{ color: "rgba(0, 0, 0, 0.3)" }}
     >
       <Text id={id} style={styles.optionText}>
-        {IN_TESTING_MODE && `${copyOfKeyValue}- `}
+        {IN_TESTING_MODE && `${optionKeyValue}- `}
         {answer}
       </Text>
 

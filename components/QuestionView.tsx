@@ -12,15 +12,15 @@ import {
 } from "../testing/TestingModeVariables";
 
 interface QuestionViewProps {
-  questionIndex: number;
+  questionKeyValue: string;
   question: QuestionWithTheCorrectAnswer;
 }
 
 const MemoOptions = memo(Options);
 
 const QuestionView: React.FC<QuestionViewProps> = ({
+  questionKeyValue,
   question: Q,
-  questionIndex,
 }) => {
   const {
     id,
@@ -43,7 +43,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
 
   // FOR TESTING ONLY
   useEffect(() => {
-    console.log("RE-RENDER QUESTION:", questionIndex + 1, id);
+    console.log("RE-RENDER QUESTION:", questionKeyValue);
   }, []);
 
   return (
@@ -59,7 +59,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
         {/* Question */}
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>
-            {IN_TESTING_MODE && `${questionIndex + 1}.${id}- \n`}
+            {IN_TESTING_MODE && `${questionKeyValue}- \n`}
             {question}
           </Text>
         </View>
@@ -70,12 +70,10 @@ const QuestionView: React.FC<QuestionViewProps> = ({
             {options.map((option, optionIndex) => (
               <MemoOptions
                 onPress={handlePress}
-                key={`${questionIndex + 1}.${id}|${optionIndex + 1}.${
+                key={`${questionKeyValue}|${optionIndex + 1}.${option.id}`}
+                optionKeyValue={`${questionKeyValue}|${optionIndex + 1}.${
                   option.id
                 }`}
-                copyOfKeyValue={`${questionIndex + 1}.${id}|${
-                  optionIndex + 1
-                }.${option.id}`}
                 option={option}
                 didTheUserPressed={userPressed}
                 itIsWhatTheUserSelected={userAnswer == option.id}

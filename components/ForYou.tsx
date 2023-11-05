@@ -21,9 +21,26 @@ import QuestionView from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "./supported/LoadingSpinner";
 
-const MemoQuestionView = memo(QuestionView);
+const MemoQuestionView = memo(QuestionView, (prevProps, nextProps) => {
+  // console.log(prevProps.questionKeyValue);
+  // console.log(nextProps.questionKeyValue);
+  // return prevProps.prop1 === nextProps.prop1;
+  // question  questionIndex
+  const thereIsNoChange =
+    prevProps.questionKeyValue == nextProps.questionKeyValue;
+  const theComponentShouldUpdate = !thereIsNoChange;
+  if (theComponentShouldUpdate) {
+    console.log(
+      "theComponentShouldUpdate: ",
+      prevProps.questionKeyValue,
+      nextProps.questionKeyValue
+    );
+  }
+  // console.log("MEMO:", prevProps.questionKeyValue, nextProps.questionKeyValue);
+  return thereIsNoChange;
+});
 
-const AMOUNT_OF_DATA_TO_GET = !LESS_DATA ? 5 : 20;
+const AMOUNT_OF_DATA_TO_GET = LESS_DATA ? 5 : 20;
 
 const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
@@ -93,13 +110,14 @@ const ForYou: React.FC = () => {
         <FlatList
           data={data}
           // Rendering Data
-          keyExtractor={(item, i) => `${i}-${item.id}`}
+          keyExtractor={(item, i) => `${i + 1}.${item.id}`}
           renderItem={({ item, index }) => (
-            <MemoQuestionView question={item} questionIndex={index} />
+            <MemoQuestionView
+              question={item}
+              questionKeyValue={`${index + 1}.${item.id}`}
+            />
           )}
-          onEndReachedThreshold={5}
-          // onEndReachedThreshold={data.length}
-          // onEndReachedThreshold={20}
+          onEndReachedThreshold={AMOUNT_OF_DATA_TO_GET}
           onEndReached={loadMoreData}
           // View
           showsVerticalScrollIndicator={false}
