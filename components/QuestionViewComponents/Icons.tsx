@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { User } from "../../services/question-services";
+import { UserDetails } from "../../services/question-services";
 
 interface Props {
-  user: User;
+  user: UserDetails;
 }
 
 const Icons: FC<Props> = ({ user }) => {
