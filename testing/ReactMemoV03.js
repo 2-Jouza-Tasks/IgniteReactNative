@@ -59,7 +59,7 @@ const GreetingV05C = ({ obj }) => {
     </h3>
   );
 };
-const GreetingV06C = ({ obj }) => {
+const GreetingV06C = ({ obj, name }) => {
   console.log("666 CCC | was rendered at", new Date().toLocaleTimeString());
   return (
     <h3>

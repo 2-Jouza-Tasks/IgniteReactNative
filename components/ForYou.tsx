@@ -13,34 +13,34 @@ import {
 } from "../services/question-services";
 import {
   IN_TESTING_MODE,
-  LESS_DATA,
   TESTING_MODE_STYLE,
 } from "../testing/TestingModeVariables";
 import AppTimer from "./supported/AppTimer";
-import QuestionView from "./QuestionView";
+import QuestionView, { QuestionViewProps } from "./QuestionView";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "./supported/LoadingSpinner";
 
-const MemoQuestionView = memo(QuestionView, (prevProps, nextProps) => {
-  // console.log(prevProps.questionKeyValue);
-  // console.log(nextProps.questionKeyValue);
-  // return prevProps.prop1 === nextProps.prop1;
-  // question  questionIndex
-  const thereIsNoChange =
+const areQuestionPropsEqual = (
+  prevProps: QuestionViewProps,
+  nextProps: QuestionViewProps
+) => {
+  const isThisPropsIsEqual =
     prevProps.questionKeyValue == nextProps.questionKeyValue;
-  const theComponentShouldUpdate = !thereIsNoChange;
-  if (theComponentShouldUpdate) {
+
+  if (IN_TESTING_MODE && !isThisPropsIsEqual) {
     console.log(
-      "theComponentShouldUpdate: ",
+      "QuestionView will Update: ",
       prevProps.questionKeyValue,
       nextProps.questionKeyValue
     );
   }
-  // console.log("MEMO:", prevProps.questionKeyValue, nextProps.questionKeyValue);
-  return thereIsNoChange;
-});
 
-const AMOUNT_OF_DATA_TO_GET = LESS_DATA ? 5 : 20;
+  return isThisPropsIsEqual;
+};
+
+const MemoQuestionView = memo(QuestionView, areQuestionPropsEqual);
+
+const AMOUNT_OF_DATA_TO_GET = 20;
 
 const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
@@ -48,14 +48,11 @@ const ForYou: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const loadMoreData = () => {
-    console.log(AMOUNT_OF_DATA_TO_GET, "AA", data.length);
     setIsLoading(true);
 
     getAmountOfDataV02(AMOUNT_OF_DATA_TO_GET)
-      // getAmountOfDataV02(2)
       .then((newQuestions) => {
         setData([...data, ...newQuestions]);
-        console.log("BB", data.length + newQuestions.length);
       })
       .catch((err) => {
         setErrorMessage(err.message);
@@ -93,7 +90,6 @@ const ForYou: React.FC = () => {
               }}
             >
               {data.length} - {isLoading && "Loading..."}
-              {/* {console.log("DATA: ", data.map((e) => e.id).join("|"))} */}
             </Text>
           </View>
         )}
@@ -117,6 +113,10 @@ const ForYou: React.FC = () => {
               questionKeyValue={`${index + 1}.${item.id}`}
             />
           )}
+          // Optimizing FlatList Configuration
+          initialNumToRender={AMOUNT_OF_DATA_TO_GET}
+          maxToRenderPerBatch={AMOUNT_OF_DATA_TO_GET}
+          // on reach End
           onEndReachedThreshold={AMOUNT_OF_DATA_TO_GET}
           onEndReached={loadMoreData}
           // View
@@ -144,9 +144,7 @@ const testingModeStyle2 = TESTING_MODE_STYLE
   ? {
       borderWidth: 3,
       borderColor: "green",
-      marginTop: 665,
-      // top: "none",
-      // bottom: 25,
+      marginTop: 655,
     }
   : {};
 

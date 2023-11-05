@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   iconText: {
     color: "white",
   },
-}as const);
+} as const);

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import Options from "./QuestionViewComponents/Options";
 import Icons from "./QuestionViewComponents/Icons";
@@ -11,12 +11,10 @@ import {
   TESTING_MODE_STYLE,
 } from "../testing/TestingModeVariables";
 
-interface QuestionViewProps {
+export interface QuestionViewProps {
   questionKeyValue: string;
   question: QuestionWithTheCorrectAnswer;
 }
-
-const MemoOptions = memo(Options);
 
 const QuestionView: React.FC<QuestionViewProps> = ({
   questionKeyValue,
@@ -43,7 +41,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
 
   // FOR TESTING ONLY
   useEffect(() => {
-    console.log("RE-RENDER QUESTION:", questionKeyValue);
+    // console.log("RE-RENDER QUESTION:", questionKeyValue);
   }, []);
 
   return (
@@ -68,7 +66,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
         <View style={styles.bottomContainer}>
           <View style={styles.optionsContainer}>
             {options.map((option, optionIndex) => (
-              <MemoOptions
+              <Options
                 onPress={handlePress}
                 key={`${questionKeyValue}|${optionIndex + 1}.${option.id}`}
                 optionKeyValue={`${questionKeyValue}|${optionIndex + 1}.${
@@ -81,11 +79,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
               />
             ))}
 
-            <User
-              user={user}
-              playlist={playlist}
-              description={description}
-            ></User>
+            <User user={user} description={description} />
           </View>
           {/* User Details */}
 

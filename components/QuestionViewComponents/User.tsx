@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import { User } from "../../services/question-services";
+import {} from "../../services/question-services";
 
 interface Props {
-  user: User;
+  user: UserDetails;
   description: string;
-  playlist: string;
 }
-const Answer: FC<Props> = ({ user, description, playlist }) => {
+const User: FC<Props> = ({ user, description }) => {
   return (
     <View style={styles.userView}>
       <View style={styles.userInfoContainer}>
@@ -18,14 +17,13 @@ const Answer: FC<Props> = ({ user, description, playlist }) => {
   );
 };
 
-export default Answer;
+export default User;
 
 const styles = StyleSheet.create({
   userView: {
     // flex: 1,
   },
-  userInfoContainer: {
-  },
+  userInfoContainer: {},
 
   userText: {
     fontSize: 16,
@@ -36,4 +34,4 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 14,
   },
-}as const);
+} as const);

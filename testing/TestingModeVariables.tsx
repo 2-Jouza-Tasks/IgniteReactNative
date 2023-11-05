@@ -13,10 +13,12 @@ let TESTING_MODE_STYLE = false;
 Change under this line
 
 */
-IN_TESTING_MODE = true;
 
 // Current_time = '7:37' + AM
+// CURRENT_TIME = `HERE => 1:42 ${AM}`;
 CURRENT_TIME = `HERE => 1:42 ${PM}`;
-TESTING_MODE_STYLE = true;
+
+// IN_TESTING_MODE = true;
+// TESTING_MODE_STYLE = true;
 // LESS_DATA = true;
 export { IN_TESTING_MODE, CURRENT_TIME, LESS_DATA, TESTING_MODE_STYLE };

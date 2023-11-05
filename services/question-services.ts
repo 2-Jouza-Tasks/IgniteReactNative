@@ -1,6 +1,6 @@
 import { request } from "./api";
 
-export interface User {
+export interface UserDetails {
   name: string;
   avatar: string;
 }
@@ -23,7 +23,7 @@ export interface Question {
   image: string;
   question: string;
   options: Option[];
-  user: User;
+  user: UserDetails;
 }
 
 const ERROR_MESSAGES = {

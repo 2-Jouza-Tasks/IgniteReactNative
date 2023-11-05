@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import * as Animatable from "react-native-animatable";
 import { IN_TESTING_MODE } from "../../testing/TestingModeVariables";
 
-interface Props {
+export interface OptionsProps {
   optionKeyValue: string;
   option: Option;
   onPress: (id: string) => void;
@@ -14,7 +14,7 @@ interface Props {
   itIsWhatTheUserSelected: boolean;
 }
 
-const Options: FC<Props> = ({
+const Options: FC<OptionsProps> = ({
   optionKeyValue,
   option,
   onPress,
@@ -26,7 +26,7 @@ const Options: FC<Props> = ({
 
   // FOR TESTING ONLY
   useEffect(() => {
-    console.log("RE-RENDER    OPTION:", optionKeyValue);
+    // console.log("RE-RENDER    OPTION:", optionKeyValue);
   }, []);
 
   return (
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     width: "85%",
     color: "black",
     paddingVertical: 4,
-
     // textShadowColor: "black",
     // textShadowOffset: { width: 2, height: 1 },
   },
