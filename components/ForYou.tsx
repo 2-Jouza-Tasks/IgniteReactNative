@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
+  Pressable,
   FlatList,
   StyleSheet,
   Dimensions,
@@ -21,7 +22,6 @@ interface MemoProps {
   question: QuestionWithTheCorrectAnswer;
   index: string;
 }
-
 const MemoizedItemComponent = React.memo(QuestionView);
 // const MemoizedItemComponent = React.memo<MemoProps>(
 //   ({ question, index }):<QuestionView> => {
@@ -37,15 +37,19 @@ const MemoizedItemComponent = React.memo(QuestionView);
 //   }
 // );
 
+const AMOUNT_OF_DATA_TO_GET = LESS_DATA ? 2 : 20;
+
 const ForYou: React.FC = () => {
   const [data, setData] = useState<QuestionWithTheCorrectAnswer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const amountOfDataToGet = LESS_DATA ? 5 : 20;
+
+  const flatListRef = useRef(FlatList);
+
   const loadMoreData = () => {
     setIsLoading(true);
 
-    getAmountOfDataV02(amountOfDataToGet)
+    getAmountOfDataV02(AMOUNT_OF_DATA_TO_GET)
       .then((newQuestions) => {
         setData([...data, ...newQuestions]);
       })
@@ -77,11 +81,20 @@ const ForYou: React.FC = () => {
         <AppTimer />
 
         {IN_TESTING_MODE && (
-          <Text style={styles.headerText}>
-            {data.length} - {isLoading && "Loading..."}
-          </Text>
+          <View>
+            <Text style={styles.headerText}>
+              {data.length} - {isLoading && "Loading..."}
+              {/* {console.log("DATA: ", data.map((e) => e.id).join("|"))} */}
+            </Text>
+            <Text
+              onPress={() => {
+                loadMoreData();
+              }}
+            >
+              END
+            </Text>
+          </View>
         )}
-
         <Text style={styles.headerText}>For You</Text>
 
         <Icon name="search" size={24} color="white" />
@@ -94,12 +107,13 @@ const ForYou: React.FC = () => {
       ) : (
         <FlatList
           data={data}
+          // Rendering Data
+          keyExtractor={(item, i) => `${i}-${item.id}`}
           renderItem={({ item, index }) => (
             <MemoizedItemComponent question={item} index={index} />
           )}
-          keyExtractor={(item, i) => `${i}-${item.id}`}
-          // Rendering Data
-          onEndReachedThreshold={amountOfDataToGet}
+          // onEndReachedThreshold={AMOUNT_OF_DATA_TO_GET * 0.8}
+          onEndReachedThreshold={data.length}
           onEndReached={loadMoreData}
           // View
           showsVerticalScrollIndicator={false}

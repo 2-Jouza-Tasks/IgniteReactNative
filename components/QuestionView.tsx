@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import Options from "./QuestionViewComponents/Options";
 import Icons from "./QuestionViewComponents/Icons";
@@ -34,6 +34,11 @@ const QuestionView: React.FC<QuestionViewProps> = ({ question: Q, index }) => {
     setUserPressed(true);
     setUserAnswer(optionId);
   };
+
+  // FOR TESTING ONLY
+  useEffect(() => {
+    // console.log("RE-RENDER QUESTION:", index + 1, id);
+  }, []);
 
   return (
     <View style={styles.container}>

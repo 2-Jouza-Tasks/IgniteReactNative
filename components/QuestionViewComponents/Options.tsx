@@ -22,6 +22,11 @@ const Options: FC<Props> = ({
 }) => {
   const { id, answer } = option;
 
+  // FOR TESTING ONLY
+  useEffect(() => {
+    // console.log("RE-RENDER OPTION:", index + 1, id);
+  }, []);
+
   return (
     <Pressable
       onPress={() => {

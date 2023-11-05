@@ -76,13 +76,13 @@ export const getAmountOfDataV02 = async (
 
       return finalResult;
     } catch (error) {
-      const errorMessage = `${ERROR_MESSAGES.baseError} ${ERROR_MESSAGES.getTheNextQuestion}`;
-      console.log(errorMessage);
+      const errorMessage = `${ERROR_MESSAGES.baseError} ${ERROR_MESSAGES.getQuestionAnswer}`;
+      // console.log('BBB',errorMessage);
       throw new Error(errorMessage);
     }
   } catch (error) {
-    const errorMessage = `${ERROR_MESSAGES.baseError} ${ERROR_MESSAGES.getQuestionAnswer}`;
-    console.log(errorMessage);
+    const errorMessage = `${ERROR_MESSAGES.baseError} ${ERROR_MESSAGES.getTheNextQuestion}`;
+    // console.log('AAA',errorMessage);
     throw new Error(errorMessage);
   }
 };
