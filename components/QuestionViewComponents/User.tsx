@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import {} from "../../services/question-services";
+import { UserDetails } from "../../services/question-services";
 
 interface Props {
   user: UserDetails;
